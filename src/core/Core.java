@@ -89,6 +89,9 @@ public class Core {
         currExchange = new PoloniexExchange(ExchangeType.POLONIEX);
         allExchanges.add(currExchange);
 
+        currExchange = new KucoinExchange(ExchangeType.KUCOIN);
+        allExchanges.add(currExchange);
+
         return allExchanges;
     }
 

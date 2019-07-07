@@ -9,5 +9,7 @@ public class ExchangeType {
     public static final String HITBTC = "HITBTC";
     public static final String BIBOX = "BIBOX";
     public static final String POLONIEX = "POLONIEX";
+    public static final String KUCOIN = "KUCOIN";
+    public static final String BITMART = "BITMART";
 
 }
