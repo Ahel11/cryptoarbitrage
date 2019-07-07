@@ -19,6 +19,7 @@ public class Core {
     public void getArbitrage() {
         while(true) {
             if(!isAllExchangeSyncFinished()) {
+                System.out.print("Checking....\n");
                 sleep(600);
                 continue;
             }
@@ -66,14 +67,14 @@ public class Core {
         ArrayList<Exchange> allExchanges = new ArrayList<Exchange>();
         Exchange currExchange;
 
-        //currExchange = new BinanceExchange(ExchangeType.BINANCE);
-       // allExchanges.add(currExchange);
+        currExchange = new BinanceExchange(ExchangeType.BINANCE);
+        allExchanges.add(currExchange);
 
         currExchange = new BittrexExchange(ExchangeType.BITTREX);
         allExchanges.add(currExchange);
 
-        //currExchange = new OKExchange(ExchangeType.OKEX);
-        //allExchanges.add(currExchange);
+        currExchange = new OKExchange(ExchangeType.OKEX);
+        allExchanges.add(currExchange);
 
         return allExchanges;
     }

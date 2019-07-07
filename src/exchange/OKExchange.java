@@ -3,6 +3,7 @@ package exchange;
 import core.Core;
 import model.CryptoPair;
 import model.Order;
+import model.ShrimpyHandler;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -22,51 +23,10 @@ public class OKExchange extends Exchange{
     private static ArrayList<CryptoPair> allPairs = new ArrayList<>();
     private static int totalNrOfAssets = 0;
     private static int nrOfLoadedAssets = 0;
+    private static boolean allAssetsLoaded = false;
 
     public OKExchange(String type) {
         setExchangeType(type);
-    }
-
-    public static synchronized void updateTotalNrOfAssets(int nr) {
-        totalNrOfAssets = totalNrOfAssets + nr;
-    }
-
-    public static synchronized void updateTotalNrOfLoadedAssets(int nr) {
-        nrOfLoadedAssets = nrOfLoadedAssets + nr;
-    }
-
-    public static synchronized void addCryptoPairToList(CryptoPair pairToAdd) {
-        allPairs.add(pairToAdd);
-    }
-
-    public static boolean isAllAssetsLoaded() {
-        System.out.print("NrLoadedAssets:\t" + nrOfLoadedAssets + "\tTotalNrAssets:\t" + totalNrOfAssets + "\n");
-        if(nrOfLoadedAssets >= (totalNrOfAssets-2)) {
-            return true;
-        }
-        return false;
-    }
-
-
-    public ArrayList<String> getAllPairsToRetrieve() {
-        ArrayList<String> allPairsString = new ArrayList<>();
-
-        try {
-            Document doc= Jsoup.connect("https://coinmarketcap.com/exchanges/okex/").get();
-            Elements allElements = doc.getElementsByTag("td");
-
-            for(Element e: allElements) {
-                if(e.text().contains("/")) {
-                    String bittrexPair = e.text().replace("/" , "-");
-                    allPairsString.add(bittrexPair);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        return allPairsString;
     }
 
     @Override
@@ -76,25 +36,19 @@ public class OKExchange extends Exchange{
 
     @Override
     public void synchPrices() {
-        ArrayList<String> allPairs = getAllPairsToRetrieve();
-
-        for(int i=0; i<allPairs.size(); i++) {
-            String currPair = allPairs.get(0);
-            OKexHandler okexHandler = new OKexHandler(currPair);
-            okexHandler.start();
-            exchangeSleep(100);
-        }
+        ShrimpyHandler shrimpyHandler = new ShrimpyHandler();
 
         while(true) {
-            if(isAllAssetsLoaded()) {
+            allPairs = shrimpyHandler.getAllPairsFromExchange(ExchangeType.OKEX);
+            if(allPairs.size() > 300) {
                 break;
             }
-            exchangeSleep(500);
+            exchangeSleep(800);
         }
+
         Core.updateFinishedExchange(this.allPairs, getExchangeType());
         unfiromPairStrings();
         setFinishedSync(true);
-
     }
 
     @Override
@@ -102,6 +56,7 @@ public class OKExchange extends Exchange{
         for(CryptoPair currPair: allPairs) {
             System.out.print(currPair.toString() +  "\n");
         }
+        System.out.print("\nSIZE OF " + this.getExchangeType() + "\t" + allPairs.size() + "\n\n");
     }
 
     private void unfiromPairStrings() {
@@ -114,35 +69,16 @@ public class OKExchange extends Exchange{
             } else if(uniformPair.contains("ETH")) {
                 String other = uniformPair.replace("ETH", "");
                 uniformPair = "ETH" + other;
+            } else if(uniformPair.contains("USDT")) {
+                String other = uniformPair.replace("USDT", "");
+                uniformPair = "USDT" + other;
             }
+
 
             pair.setCryptoPair(uniformPair);
             pair.getBestAsk().setOrderType(Order.ASK);
             pair.getBestBid().setOrderType(Order.BID);
         }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    public class OKexHandler extends Thread {
-        private String pair;
-        public OKexHandler(String pair) {
-            this.pair = pair;
-        }
-
-        public void run() {
-
-        }
-
     }
 
 }
