@@ -26,6 +26,7 @@ public class Core {
             break;
         }
 
+        //All exchanges got their data
         for(Exchange currExchange: allExchanges) {
             System.out.print("Printing all " + currExchange.getExchangeType() + "\t" + "\n\n\n\n");
             currExchange.printAllPairs();
@@ -74,6 +75,9 @@ public class Core {
         allExchanges.add(currExchange);
 
         currExchange = new OKExchange(ExchangeType.OKEX);
+        allExchanges.add(currExchange);
+
+        currExchange = new HitBtcExchange(ExchangeType.HITBTC);
         allExchanges.add(currExchange);
 
         return allExchanges;

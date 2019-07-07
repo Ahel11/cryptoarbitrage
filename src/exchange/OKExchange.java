@@ -2,6 +2,7 @@ package exchange;
 
 import core.Core;
 import model.CryptoPair;
+import model.ExchangeHelper;
 import model.Order;
 import model.ShrimpyHandler;
 import org.apache.http.HttpResponse;
@@ -60,25 +61,8 @@ public class OKExchange extends Exchange{
     }
 
     private void unfiromPairStrings() {
-        for(CryptoPair pair: allPairs) {
-            String uniformPair = pair.getCryptoPair().replace("/", "");
-
-            if(uniformPair.contains("BTC")) {
-                String other = uniformPair.replace("BTC", "");
-                uniformPair = "BTC" + other;
-            } else if(uniformPair.contains("ETH")) {
-                String other = uniformPair.replace("ETH", "");
-                uniformPair = "ETH" + other;
-            } else if(uniformPair.contains("USDT")) {
-                String other = uniformPair.replace("USDT", "");
-                uniformPair = "USDT" + other;
-            }
-
-
-            pair.setCryptoPair(uniformPair);
-            pair.getBestAsk().setOrderType(Order.ASK);
-            pair.getBestBid().setOrderType(Order.BID);
-        }
+        ExchangeHelper helper = new ExchangeHelper();
+        helper.uniformPairs(allPairs);
     }
 
 }
