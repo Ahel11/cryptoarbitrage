@@ -83,6 +83,9 @@ public class Core {
         currExchange = new HuobiExchange(ExchangeType.HUOBI);
         allExchanges.add(currExchange);
 
+        currExchange = new BiboxExchange(ExchangeType.BIBOX);
+        allExchanges.add(currExchange);
+
         return allExchanges;
     }
 
