@@ -86,6 +86,9 @@ public class Core {
         currExchange = new BiboxExchange(ExchangeType.BIBOX);
         allExchanges.add(currExchange);
 
+        currExchange = new PoloniexExchange(ExchangeType.POLONIEX);
+        allExchanges.add(currExchange);
+
         return allExchanges;
     }
 
