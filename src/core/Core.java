@@ -92,6 +92,10 @@ public class Core {
         currExchange = new KucoinExchange(ExchangeType.KUCOIN);
         allExchanges.add(currExchange);
 
+        currExchange = new BitmartExchange(ExchangeType.BITMART);
+        allExchanges.add(currExchange);
+
+
         return allExchanges;
     }
 
