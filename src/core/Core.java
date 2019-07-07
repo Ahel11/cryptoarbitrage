@@ -80,6 +80,9 @@ public class Core {
         currExchange = new HitBtcExchange(ExchangeType.HITBTC);
         allExchanges.add(currExchange);
 
+        currExchange = new HuobiExchange(ExchangeType.HUOBI);
+        allExchanges.add(currExchange);
+
         return allExchanges;
     }
 
