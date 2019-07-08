@@ -3,24 +3,16 @@ package exchange;
 import core.Core;
 import model.CryptoPair;
 import model.ExchangeHelper;
-import model.Order;
 import model.ShrimpyHandler;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
-public class BinanceExchange  extends Exchange {
+public class KucoinExchange extends Exchange{
 
     private static ArrayList<CryptoPair> allPairs = new ArrayList<>();
 
-    public BinanceExchange(String type) {
-        this.setExchangeType(type);
-        initialize();
-    }
-
-    private void initialize() {
-
+    public KucoinExchange(String type) {
+        setExchangeType(type);
     }
 
     @Override
@@ -33,8 +25,8 @@ public class BinanceExchange  extends Exchange {
         ShrimpyHandler shrimpyHandler = new ShrimpyHandler();
 
         while(true) {
-            allPairs = shrimpyHandler.getAllPairsFromExchange(ExchangeType.BINANCE);
-            if(allPairs.size() > 300) {
+            allPairs = shrimpyHandler.getAllPairsFromExchange(ExchangeType.KUCOIN);
+            if(allPairs.size() > 150) {
                 break;
             }
             exchangeSleep(800);
@@ -57,60 +49,6 @@ public class BinanceExchange  extends Exchange {
         ExchangeHelper helper = new ExchangeHelper();
         helper.uniformPairs(allPairs);
     }
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

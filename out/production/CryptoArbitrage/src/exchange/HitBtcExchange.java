@@ -3,24 +3,20 @@ package exchange;
 import core.Core;
 import model.CryptoPair;
 import model.ExchangeHelper;
-import model.Order;
 import model.ShrimpyHandler;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
-public class BinanceExchange  extends Exchange {
-
+public class HitBtcExchange extends Exchange {
     private static ArrayList<CryptoPair> allPairs = new ArrayList<>();
 
-    public BinanceExchange(String type) {
-        this.setExchangeType(type);
-        initialize();
+    public HitBtcExchange(String type) {
+        setExchangeType(type);
     }
 
-    private void initialize() {
-
+    private void unfiromPairStrings() {
+        ExchangeHelper helper = new ExchangeHelper();
+        helper.uniformPairs(allPairs);
     }
 
     @Override
@@ -33,8 +29,8 @@ public class BinanceExchange  extends Exchange {
         ShrimpyHandler shrimpyHandler = new ShrimpyHandler();
 
         while(true) {
-            allPairs = shrimpyHandler.getAllPairsFromExchange(ExchangeType.BINANCE);
-            if(allPairs.size() > 300) {
+            allPairs = shrimpyHandler.getAllPairsFromExchange(ExchangeType.HITBTC);
+            if(allPairs.size() > 400) {
                 break;
             }
             exchangeSleep(800);
@@ -53,64 +49,4 @@ public class BinanceExchange  extends Exchange {
         System.out.print("\nSIZE OF " + this.getExchangeType() + "\t" + allPairs.size() + "\n\n");
     }
 
-    private void unfiromPairStrings() {
-        ExchangeHelper helper = new ExchangeHelper();
-        helper.uniformPairs(allPairs);
-    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

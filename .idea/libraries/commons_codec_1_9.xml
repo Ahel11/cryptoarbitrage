@@ -1,0 +1,25 @@
+<component name="libraryTable">
+  <library name="commons-codec-1.9">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/commons-codec-1.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/fluent-hc-4.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/httpclient-4.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/httpclient-cache-4.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/httpclient-win-4.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/httpcore-4.4.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/httpmime-4.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/jna-4.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/jna-platform-4.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/JSON/java-json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/JSON/json-20180813.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/JSON/json-lib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/JSOUP/jsoup-1.11.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/JSON/java-json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/NeededLibsForCrypto/JSON/json-lib.jar!/" />
+    </SOURCES>
+  </library>
+</component>
