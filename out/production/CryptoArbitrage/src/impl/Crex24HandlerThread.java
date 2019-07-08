@@ -28,7 +28,7 @@ public class Crex24HandlerThread extends Thread{
                     break;
                 }
             }
-            System.out.print(pair.toString() + "\n");
+
             if(pair != null) {
                 Crex24Exchange.addGeneratedCryptoPair(pair);
                 Crex24Exchange.updateTotalNrOfPairsLoaded(1);
@@ -48,7 +48,7 @@ public class Crex24HandlerThread extends Thread{
             CryptoPair toReturn = handler.generateCryptoPairFromPair(this.pair);
             return toReturn;
         }catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return null;
         }
     }

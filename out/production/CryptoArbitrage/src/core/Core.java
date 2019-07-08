@@ -98,6 +98,9 @@ public class Core {
         currExchange = new Crex24Exchange(ExchangeType.CREX24);
         allExchanges.add(currExchange);
 
+        currExchange = new CoinExchange(ExchangeType.COINEXCHANGE);
+        allExchanges.add(currExchange);
+
         return allExchanges;
     }
 
