@@ -10,9 +10,11 @@ public class ArbitrageOppurtunity implements Comparable{
     private double buyPrice;
     private double sellPrice;
     private double profitPerc;
-    private double maxVolume;
+    private double profitDollar;
+    private double minVolume;
     private String space = "         ";
-    DecimalFormat format =  new DecimalFormat("#.##########");
+    DecimalFormat format =  new DecimalFormat("#.#########");
+    DecimalFormat formatPerc =  new DecimalFormat("#.##");
 
     public ArbitrageOppurtunity() {
         this.fromExchange ="";
@@ -21,7 +23,8 @@ public class ArbitrageOppurtunity implements Comparable{
         this.buyPrice = 0;
         this.sellPrice = 0;
         this.profitPerc = 0;
-        this.maxVolume = 0;
+        this.minVolume = 0;
+        this.profitDollar = 0;
     }
 
     public String getFromExchange() {
@@ -64,12 +67,12 @@ public class ArbitrageOppurtunity implements Comparable{
         this.profitPerc = profitPerc;
     }
 
-    public double getMaxVolume() {
-        return maxVolume;
+    public double getMinVolume() {
+        return minVolume;
     }
 
-    public void setMaxVolume(double maxVolume) {
-        this.maxVolume = maxVolume;
+    public void setMinVolume(double minVolume) {
+        this.minVolume = minVolume;
     }
 
     public String getPairType() {
@@ -80,14 +83,23 @@ public class ArbitrageOppurtunity implements Comparable{
         this.pairType = pairType;
     }
 
+    public double getProfitDollar() {
+        return profitDollar;
+    }
+
+    public void setProfitDollar(double profitDollar) {
+        this.profitDollar = profitDollar;
+    }
+
     @Override
     public String toString() {
-        return "fromExchange:\t\t" + fromExchange +
-                "\t\ttoExchange:\t\t" + toExchange  +
+        return "FROM:\t\t" + fromExchange +
+                "\t\tTO:\t\t" + toExchange  +
                 "\t\t\tbuyPrice:\t\t" + format.format(buyPrice)+
                 "\t\t\tsellPrice:\t\t" + format.format(sellPrice )+
-                "\t\tprofitPerc:\t\t" + format.format(profitPerc)+
-                "\t\tminVolume:\t\t" + maxVolume +
+                "\t\tprofitPerc:\t\t" + formatPerc.format(profitPerc) + "%" +
+                "\t\tpP$:\t\t" + formatPerc.format(profitDollar) +
+                "\t\tminVolume:\t\t" + formatPerc.format(minVolume) +
                 "\t\tPair:\t\t" + this.pairType;
     }
 

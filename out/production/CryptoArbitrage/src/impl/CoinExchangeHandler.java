@@ -49,11 +49,11 @@ public class CoinExchangeHandler {
             Order bestAskOrder = new Order();
 
             bestAskOrder.setPrice(Double.parseDouble(currJsonObj.getString("AskPrice")));
-            bestAskOrder.setVolume(Double.parseDouble(currJsonObj.getString("Volume")));
+            bestAskOrder.setVolume(Double.parseDouble(currJsonObj.getString("BTCVolume")));
             bestAskOrder.setOrderType(Order.ASK);
 
             bestBidOrder.setPrice(Double.parseDouble(currJsonObj.getString("BidPrice")));
-            bestBidOrder.setVolume(Double.parseDouble(currJsonObj.getString("Volume")));
+            bestBidOrder.setVolume(Double.parseDouble(currJsonObj.getString("BTCVolume")));
             bestBidOrder.setOrderType(Order.BID);
 
             currPair.setBestBid(bestBidOrder);

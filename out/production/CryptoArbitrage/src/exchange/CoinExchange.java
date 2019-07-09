@@ -27,8 +27,8 @@ public class CoinExchange extends  Exchange{
         CoinExchangeHandler handler = new CoinExchangeHandler();
         allPairs = handler.getAllCrytoPairs();
 
-        Core.updateFinishedExchange(allPairs, getExchangeType());
         unfiromPairStrings();
+        Core.updateFinishedExchange(allPairs, getExchangeType());
         setFinishedSync(true);
     }
 

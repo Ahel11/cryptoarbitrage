@@ -27,6 +27,66 @@ public class ShrimpyHandler {
         }
     }
 
+    public static double getBTCRate() {
+        double btcRate = 0;
+        try {
+
+            HttpClient tempClient = HttpClientBuilder.create().build();
+            String url = "https://dev-api.shrimpy.io/v1/orderbooks?exchange=binance&baseSymbol=BTC&quoteSymbol=USDT&limit=1";
+            HttpGet get = new HttpGet(url);
+            HttpResponse resp = tempClient.execute(get);
+            String respString = EntityUtils.toString(resp.getEntity());
+
+            JSONArray respJsonArr = new JSONArray(respString);
+            JSONObject obj = respJsonArr.getJSONObject(0);
+            JSONArray books = obj.getJSONArray("orderBooks");
+
+            JSONObject bookObj = books.getJSONObject(0);
+            JSONObject bookObj2 = bookObj.getJSONObject("orderBook");
+
+            JSONArray asks = bookObj2.getJSONArray("asks");
+            JSONObject finalObj = (JSONObject)asks.get(0);
+
+            btcRate = Double.parseDouble(finalObj.getString("price"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return btcRate;
+    }
+
+    public static double getETHRate() {
+        double btcRate = 0;
+        try {
+
+            HttpClient tempClient = HttpClientBuilder.create().build();
+            String url = "https://dev-api.shrimpy.io/v1/orderbooks?exchange=binance&baseSymbol=ETH&quoteSymbol=USDT&limit=1";
+            HttpGet get = new HttpGet(url);
+            HttpResponse resp = tempClient.execute(get);
+            String respString = EntityUtils.toString(resp.getEntity());
+
+            JSONArray respJsonArr = new JSONArray(respString);
+            JSONObject obj = respJsonArr.getJSONObject(0);
+            JSONArray books = obj.getJSONArray("orderBooks");
+
+            JSONObject bookObj = books.getJSONObject(0);
+            JSONObject bookObj2 = bookObj.getJSONObject("orderBook");
+
+            JSONArray asks = bookObj2.getJSONArray("asks");
+            JSONObject finalObj = (JSONObject)asks.get(0);
+
+            btcRate = Double.parseDouble(finalObj.getString("price"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return btcRate;
+    }
+
     public ArrayList<CryptoPair> getAllPairsFromExchange(String exchage) {
         ArrayList<CryptoPair> allPairs = new ArrayList<>();
         try {
@@ -51,7 +111,7 @@ public class ShrimpyHandler {
                     JSONArray askArr = orderBookJsonObj.getJSONArray("asks");
                     JSONArray bidsArr = orderBookJsonObj.getJSONArray("bids");
 
-                    CryptoPair generatedCryptoPair = generateCryptoPairFromAskAndBid(askArr, bidsArr);
+                    CryptoPair generatedCryptoPair = generateCryptoPairFromAskAndBid(quoteSymbol, askArr, bidsArr);
                     generatedCryptoPair.setExchangeType(exchage);
                     generatedCryptoPair.setCryptoPair(pair);
                     allPairs.add(generatedCryptoPair);
@@ -65,20 +125,29 @@ public class ShrimpyHandler {
         return allPairs;
     }
 
-    private CryptoPair generateCryptoPairFromAskAndBid(JSONArray asks, JSONArray bids) throws Exception{
+    private CryptoPair generateCryptoPairFromAskAndBid(String quoteSymbol, JSONArray asks, JSONArray bids) throws Exception{
         CryptoPair pairToReturn = new CryptoPair();
         JSONObject bestBidObj = bids.getJSONObject(0);
         JSONObject bestAskObj = asks.getJSONObject(0);
+        double currP = 0, currQ = 0, usdVolume = 0;
 
         Order bestAskOrder = new Order();
-        bestAskOrder.setPrice(Double.parseDouble(bestAskObj.getString("price")));
-        bestAskOrder.setVolume(Double.parseDouble(bestAskObj.getString("quantity")));
+        currP = Double.parseDouble(bestAskObj.getString("price"));
+        currQ = Double.parseDouble(bestAskObj.getString("quantity"));
+        usdVolume = PriceUtils.generateUSDVolume(quoteSymbol, currQ, currP);
+
+        bestAskOrder.setPrice(currP);
+        bestAskOrder.setVolume(usdVolume);
         bestAskOrder.setOrderType(Order.ASK);
 
 
         Order bestBidOrder = new Order();
-        bestBidOrder.setPrice(Double.parseDouble(bestBidObj.getString("price")));
-        bestBidOrder.setVolume(Double.parseDouble(bestBidObj.getString("quantity")));
+        currP = Double.parseDouble(bestBidObj.getString("price"));
+        currQ = Double.parseDouble(bestBidObj.getString("quantity"));
+        usdVolume = PriceUtils.generateUSDVolume(quoteSymbol, currQ, currP);
+
+        bestBidOrder.setPrice(currP);
+        bestBidOrder.setVolume(usdVolume);
         bestBidOrder.setOrderType(Order.BID);
 
         pairToReturn.setBestAsk(bestAskOrder);

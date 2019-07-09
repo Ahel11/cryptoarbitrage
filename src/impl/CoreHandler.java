@@ -5,9 +5,7 @@ import exchange.ExchangeType;
 import model.ArbitrageOppurtunity;
 import model.CryptoPair;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class CoreHandler {
@@ -111,10 +109,14 @@ public class CoreHandler {
             minVolume = bidPair.getBestBid().getVolume();
         }
 
+        if(minVolume == 0) {
+            System.out.print("HERE\n");
+        }
+
         String buyFrom = askPair.getExchangeType();
         String sellTo = bidPair.getExchangeType();
 
-        oppurtunity.setMaxVolume(minVolume);
+        oppurtunity.setMinVolume(minVolume);
         oppurtunity.setProfitPerc(perc);
         oppurtunity.setBuyPrice(askPair.getBestAsk().getPrice());
         oppurtunity.setSellPrice(bidPair.getBestBid().getPrice());

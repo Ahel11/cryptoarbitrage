@@ -4,6 +4,8 @@ import exchange.*;
 import impl.CoreHandler;
 import model.ArbitrageOppurtunity;
 import model.CryptoPair;
+import model.PriceUtils;
+import model.ShrimpyHandler;
 
 import java.util.ArrayList;
 
@@ -12,6 +14,7 @@ public class Core {
     private static ArrayList<Exchange> allExchanges;
 
     public Core() {
+        initializeBasePrices();
         initializeExchanges();
         startAllExchnages();
         getArbitrage();
@@ -27,12 +30,6 @@ public class Core {
             }
             break;
         }
-
-        //All exchanges got their data
-        /*for(Exchange currExchange: allExchanges) {
-            System.out.print("Printing all " + currExchange.getExchangeType() + "\t" + "\n\n\n\n");
-            currExchange.printAllPairs();
-        }*/
 
         CoreHandler coreHandler = new CoreHandler();
         ArrayList<ArbitrageOppurtunity> arbitrageOppurtunities = coreHandler.calculateArbitrageOppurtunities(allExchanges);
@@ -64,8 +61,6 @@ public class Core {
         }
     }
 
-
-
     public boolean isAllExchangeSyncFinished() {
         for(Exchange currExchange: allExchanges) {
             if(!currExchange.isFinishedSync()) {
@@ -73,6 +68,11 @@ public class Core {
             }
         }
         return true;
+    }
+
+    private void initializeBasePrices() {
+        PriceUtils.ETHValue = ShrimpyHandler.getETHRate();
+        PriceUtils.BTCValue = ShrimpyHandler.getBTCRate();
     }
 
     private ArrayList<Exchange> getAllExchanges() {

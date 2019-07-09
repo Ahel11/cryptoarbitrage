@@ -1,0 +1,3 @@
+*) Add orderVolume (from orderbook) to CoinExchange
+
+*) Add total profit in $ in the ArbitrageOppurtunity listing
