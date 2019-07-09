@@ -1,12 +1,14 @@
 *) Fix uniform USD volume                                       *************
 
-*) Check BITTREX price issue
+*) Add total profit in $ in the ArbitrageOppurtunity listing    *************
+
+*) Debug CREX24 and make sure its running good
+
+*) Calculate how much ETH to send for each arbitrage (separate variable)
+
+*) Check BITTREX price issue (worst case fetch from BITTREX won API)
 
 *) Add orderVolume (from orderbook) to CoinExchange
 
-*) Check volume is correct
-
 *) Fix so that it not only last price in orderbook is checked
    for profit
-
-*) Add total profit in $ in the ArbitrageOppurtunity listing

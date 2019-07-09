@@ -99,7 +99,7 @@ public class ArbitrageOppurtunity implements Comparable{
                 "\t\t\tsellPrice:\t\t" + format.format(sellPrice )+
                 "\t\tprofitPerc:\t\t" + formatPerc.format(profitPerc) + "%" +
                 "\t\tpP$:\t\t" + formatPerc.format(profitDollar) +
-                "\t\tminVolume:\t\t" + formatPerc.format(minVolume) +
+                //"\t\tminVolume:\t\t" + formatPerc.format(minVolume) +
                 "\t\tPair:\t\t" + this.pairType;
     }
 
@@ -108,9 +108,9 @@ public class ArbitrageOppurtunity implements Comparable{
     @Override
     public int compareTo(Object o) {
         ArbitrageOppurtunity curr = (ArbitrageOppurtunity)o;
-        if(this.getProfitPerc() > curr.getProfitPerc()) {
+        if(this.getProfitDollar() > curr.getProfitDollar()) {
             return 1;
-        } else if(this.getProfitPerc() < curr.getProfitPerc()) {
+        } else if(this.getProfitDollar() < curr.getProfitDollar()) {
             return -1;
         } else {
             return 0;

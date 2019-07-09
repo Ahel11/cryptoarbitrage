@@ -18,7 +18,6 @@ public class BitmartExchange extends Exchange {
     @Override
     public void synchPrices() {
         ShrimpyHandler shrimpyHandler = new ShrimpyHandler();
-
         while(true) {
             allPairs = shrimpyHandler.getAllPairsFromExchange(ExchangeType.BITMART);
             if(allPairs.size() > 200) {

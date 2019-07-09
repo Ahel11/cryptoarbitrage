@@ -1,3 +1,12 @@
+*) Fix uniform USD volume                                       *************
+
+*) Add total profit in $ in the ArbitrageOppurtunity listing    *************
+
+*) Debug CREX24 and make sure its running good
+
+*) Check BITTREX price issue
+
 *) Add orderVolume (from orderbook) to CoinExchange
 
-*) Add total profit in $ in the ArbitrageOppurtunity listing
+*) Fix so that it not only last price in orderbook is checked
+   for profit

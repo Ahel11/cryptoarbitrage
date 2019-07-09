@@ -4,13 +4,20 @@ import exchange.Exchange;
 import exchange.ExchangeType;
 import model.ArbitrageOppurtunity;
 import model.CryptoPair;
+import model.PriceUtils;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class CoreHandler {
 
-    private double requiredMinVolume = 20;
+    private double maxArbitrageCash = 3000;
+    private double requiredMinPerc = 1.3;
+    private double maxPerc = 10;
+
+    private double minProfitDollar = 5;
+    private double maxProfitDollar = 200;
 
     public CoreHandler() {
 
@@ -119,20 +126,17 @@ public class CoreHandler {
 
         double perc = 100 * ((bidPair.getBestBid().getPrice() / askPair.getBestAsk().getPrice()) - 1);
 
-        double minVolume = askPair.getBestAsk().getVolume();
+        /*double minVolume = askPair.getBestAsk().getVolume();
         if(bidPair.getBestBid().getVolume() < minVolume) {
             minVolume = bidPair.getBestBid().getVolume();
-        }
+        }*/
 
-        if(minVolume == 0) {
-            System.out.print("HERE\n");
-        }
 
         String buyFrom = askPair.getExchangeType();
         String sellTo = bidPair.getExchangeType();
 
-        oppurtunity.setMinVolume(minVolume);
-        oppurtunity.setProfitPerc(perc);
+        //oppurtunity.setMinVolume(minVolume);
+        oppurtunity.setProfitDollar(calculateProfitDollar(askPair,bidPair));
         oppurtunity.setBuyPrice(askPair.getBestAsk().getPrice());
         oppurtunity.setSellPrice(bidPair.getBestBid().getPrice());
         oppurtunity.setFromExchange(askPair.getExchangeType());
@@ -142,8 +146,72 @@ public class CoreHandler {
         return oppurtunity;
     }
 
+    private double calculateProfitDollar(CryptoPair askPair, CryptoPair bidPair) {
+        double profit = 0;
+        double totalSellVolume = bidPair.getBestBid().getVolume();
+        double totalBuyPrice = 0;
+        double totalSellPrice = 0;
+        double adjustedVolume = 0;
+        double volumeToUse = 0;
+        String actionFirst = "";
+        String actionSecond = "";
+        DecimalFormat format = new DecimalFormat("#.#########");
+
+        if(totalSellVolume > askPair.getBestAsk().getVolume()) {
+            volumeToUse = askPair.getBestAsk().getVolume();
+            adjustedVolume = adjustVolumeFromBalance(askPair.getBestAsk().getVolume(), askPair.getBestAsk().getPrice(), askPair.getCryptoPair());
+            if(askPair.getBestAsk().getVolume() > adjustedVolume) {
+                volumeToUse = adjustedVolume;
+            }
+
+            totalBuyPrice =  volumeToUse * askPair.getBestAsk().getPrice();
+            totalSellPrice = volumeToUse * bidPair.getBestBid().getPrice();
+
+
+            profit = totalSellPrice - totalBuyPrice;
+            actionFirst = "TotalBuyPrice:\t" + volumeToUse + " * " + askPair.getBestAsk().getPrice() + " = " + totalBuyPrice + "\n";
+            actionFirst = actionFirst + "TotalSellPrice:\t" + volumeToUse + " * " + bidPair.getBestBid().getPrice() + " = " + totalSellPrice + "\n";
+        } else {
+            volumeToUse = bidPair.getBestBid().getVolume();
+            adjustedVolume = adjustVolumeFromBalance(bidPair.getBestBid().getVolume(), bidPair.getBestBid().getPrice(), askPair.getCryptoPair());
+            if(bidPair.getBestBid().getVolume() > adjustedVolume) {
+                volumeToUse = adjustedVolume;
+            }
+
+            totalBuyPrice = volumeToUse * askPair.getBestAsk().getPrice();
+            totalSellPrice = volumeToUse * bidPair.getBestBid().getPrice();
+
+
+            actionSecond = "TotalBuyPrice:\t" + volumeToUse + " * " + askPair.getBestAsk().getPrice() + " = " + totalBuyPrice + "\n";
+            actionSecond = actionSecond + "TotalSellPrice:\t" + volumeToUse + " * " + bidPair.getBestBid().getPrice() + " = " + totalSellPrice + "\n";
+            profit = totalSellPrice - totalBuyPrice;
+        }
+
+        if(askPair.getCryptoPair().contains("BTC")) {
+            profit = profit * PriceUtils.BTCValue;
+        } else if(askPair.getCryptoPair().contains("ETH")) {
+            profit = profit * PriceUtils.ETHValue;
+        }
+
+        return profit;
+    }
+
+    private double adjustVolumeFromBalance(double volume, double price, String currency) {
+        double adjustedVolume = 0;
+
+        if(currency.contains("BTC")) {
+            adjustedVolume = (this.maxArbitrageCash / (price * PriceUtils.BTCValue));
+        } else if(currency.contains("ETH")) {
+            adjustedVolume = (this.maxArbitrageCash / (price * PriceUtils.ETHValue));
+        } else if(currency.contains("USDT")) {
+            adjustedVolume = (this.maxArbitrageCash / (price));
+        }
+
+        return adjustedVolume;
+    }
+
     private boolean passesFilter(ArbitrageOppurtunity currOpp) {
-        if(currOpp.getMinVolume() >= requiredMinVolume) {
+        if(currOpp.getProfitDollar() >= minProfitDollar && currOpp.getProfitDollar() <= maxProfitDollar) {
             return true;
         }
         return false;
