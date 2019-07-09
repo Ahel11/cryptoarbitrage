@@ -1,6 +1,7 @@
 package impl;
 
 import exchange.Exchange;
+import exchange.ExchangeType;
 import model.ArbitrageOppurtunity;
 import model.CryptoPair;
 
@@ -32,8 +33,42 @@ public class CoreHandler {
             }
         }
 
-        Collections.sort(oppurtunities);
+        oppurtunities = partitionedOppurtunities(oppurtunities);
         return oppurtunities;
+    }
+
+    private ArrayList<ArbitrageOppurtunity> partitionedOppurtunities(ArrayList<ArbitrageOppurtunity> allOppurtunities) {
+        ArrayList<ArbitrageOppurtunity> partitionedOppurtunitiesList = new ArrayList<>();
+
+        ArrayList<String> allExchangesList= new ArrayList<>();
+        allExchangesList.add(ExchangeType.BINANCE);
+        allExchangesList.add(ExchangeType.BITTREX);
+        allExchangesList.add(ExchangeType.BITMART);
+        allExchangesList.add(ExchangeType.OKEX);
+        allExchangesList.add(ExchangeType.COINEXCHANGE);
+        allExchangesList.add(ExchangeType.BIBOX);
+        allExchangesList.add(ExchangeType.CREX24);
+        allExchangesList.add(ExchangeType.HITBTC);
+        allExchangesList.add(ExchangeType.HUOBI);
+        allExchangesList.add(ExchangeType.BIBOX);
+        allExchangesList.add(ExchangeType.KUCOIN);
+        allExchangesList.add(ExchangeType.POLONIEX);
+
+
+        for(String currExchange: allExchangesList) {
+            ArrayList<ArbitrageOppurtunity> currOppurtunityList = new ArrayList<>();
+            for(ArbitrageOppurtunity currArb: allOppurtunities) {
+                if(currArb.getFromExchange().equals(currExchange)) {
+                    currOppurtunityList.add(currArb);
+                }
+            }
+
+            Collections.sort(currOppurtunityList);
+            partitionedOppurtunitiesList.addAll(currOppurtunityList);
+            currOppurtunityList = new ArrayList<>();
+        }
+
+        return partitionedOppurtunitiesList;
     }
 
     private ArrayList<CryptoPair> getPairFromOtherExchanges(CryptoPair currPair, ArrayList<Exchange> allExchanges) {
@@ -71,15 +106,15 @@ public class CoreHandler {
 
         double perc = 100 * ((bidPair.getBestBid().getPrice() / askPair.getBestAsk().getPrice()) - 1);
 
-        double maxVolume = askPair.getBestAsk().getVolume();
-        if(bidPair.getBestBid().getVolume() > maxVolume) {
-            maxVolume = bidPair.getBestBid().getVolume();
+        double minVolume = askPair.getBestAsk().getVolume();
+        if(bidPair.getBestBid().getVolume() < minVolume) {
+            minVolume = bidPair.getBestBid().getVolume();
         }
 
         String buyFrom = askPair.getExchangeType();
         String sellTo = bidPair.getExchangeType();
 
-        oppurtunity.setMaxVolume(maxVolume);
+        oppurtunity.setMaxVolume(minVolume);
         oppurtunity.setProfitPerc(perc);
         oppurtunity.setBuyPrice(askPair.getBestAsk().getPrice());
         oppurtunity.setSellPrice(bidPair.getBestBid().getPrice());

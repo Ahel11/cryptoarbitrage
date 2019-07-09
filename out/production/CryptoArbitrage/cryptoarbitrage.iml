@@ -8,150 +8,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/Binance/binance-api-client-1.0.0.RELEASE.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/Apache/httpcomponents-client-4.5.3/lib/commons-codec-1.9.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/Apache/httpcomponents-client-4.5.3/lib/commons-logging-1.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/Apache/httpcomponents-client-4.5.3/lib/fluent-hc-4.5.3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/Apache/httpcomponents-client-4.5.3/lib/httpclient-4.5.3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/Apache/httpcomponents-client-4.5.3/lib/httpclient-cache-4.5.3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/Apache/httpcomponents-client-4.5.3/lib/httpclient-win-4.5.3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/Apache/httpcomponents-client-4.5.3/lib/httpcore-4.4.6.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/Apache/httpcomponents-client-4.5.3/lib/httpmime-4.5.3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/Apache/httpcomponents-client-4.5.3/lib/jna-4.1.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/Apache/httpcomponents-client-4.5.3/lib/jna-platform-4.1.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/JSOUP/jsoup-1.11.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/JSON/java-json.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://C:/../../librarys/JSON/java-json.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/JSON/json-20180813.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/../../librarys/JSON/json-lib.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://C:/../../librarys/JSON/json-lib.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
     <orderEntry type="library" name="commons-codec-1.9" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/commons-codec-1.9.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/commons-codec-1.9.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -160,7 +21,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/commons-logging-1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/commons-logging-1.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -169,7 +30,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/fluent-hc-4.5.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/fluent-hc-4.5.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -178,7 +39,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/httpclient-4.5.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/httpclient-4.5.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -187,7 +48,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/httpclient-cache-4.5.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/httpclient-cache-4.5.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -196,7 +57,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/httpclient-win-4.5.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/httpclient-win-4.5.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -205,7 +66,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/httpcore-4.4.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/httpcore-4.4.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -214,7 +75,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/httpmime-4.5.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/httpmime-4.5.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -223,36 +84,18 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/jna-4.1.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/Apache/httpcomponents-client-4.5.3/lib/jna-platform-4.1.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/JSON/java-json.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/java-json.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/JSON/java-json.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/java-json.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/JSON/json-20180813.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/jna-4.1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -261,18 +104,27 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/JSON/json-lib.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/jna-platform-4.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/json-lib.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/JSON/json-lib.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/json-lib.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../librarys/NeededLibsForCrypto/JSOUP/jsoup-1.11.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/jsoup-1.11.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
