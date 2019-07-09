@@ -40,14 +40,28 @@ public class Crex24Exchange extends Exchange{
 
     @Override
     public void run() {
+        System.out.print("CREX STARTED\n\n");
         synchPrices();
     }
 
     @Override
     public void synchPrices() {
+        long increment = 500;
         try {
             Crex24Handler handler = new Crex24Handler();
             ArrayList<String> allPairs = handler.generatePairsToFetch();
+            while(true) {
+                if(allPairs == null) {
+                    exchangeSleep(2000 + increment);
+                    allPairs = handler.generatePairsToFetch();
+                    System.out.print("CREX FAILED\n");
+                    increment += 500;
+                } else {
+                    System.out.print("CREX SUCCEEDED\n");
+                    break;
+                }
+
+            }
             totalNrOfPairsToFetch = allPairs.size();
             int currThreads = 0;
 
@@ -62,6 +76,7 @@ public class Crex24Exchange extends Exchange{
             }
 
         } catch (Exception e) {
+            System.out.print("CREX FAILED\n\n");
             e.printStackTrace();
         }
 

@@ -1,6 +1,8 @@
 package core;
 
 import exchange.*;
+import impl.CoreHandler;
+import model.ArbitrageOppurtunity;
 import model.CryptoPair;
 
 import java.util.ArrayList;
@@ -27,10 +29,19 @@ public class Core {
         }
 
         //All exchanges got their data
-        for(Exchange currExchange: allExchanges) {
+        /*for(Exchange currExchange: allExchanges) {
             System.out.print("Printing all " + currExchange.getExchangeType() + "\t" + "\n\n\n\n");
             currExchange.printAllPairs();
+        }*/
+
+        CoreHandler coreHandler = new CoreHandler();
+        ArrayList<ArbitrageOppurtunity> arbitrageOppurtunities = coreHandler.calculateArbitrageOppurtunities(allExchanges);
+
+        //Printing oppurtunities
+        for(ArbitrageOppurtunity opp: arbitrageOppurtunities) {
+            System.out.print(opp.toString() + "\n");
         }
+
     }
 
     public void startAllExchnages() {
@@ -95,11 +106,11 @@ public class Core {
         currExchange = new BitmartExchange(ExchangeType.BITMART);
         allExchanges.add(currExchange);
 
-        currExchange = new Crex24Exchange(ExchangeType.CREX24);
-        allExchanges.add(currExchange);
+        //currExchange = new Crex24Exchange(ExchangeType.CREX24);
+        //allExchanges.add(currExchange);
 
-        currExchange = new CoinExchange(ExchangeType.COINEXCHANGE);
-        allExchanges.add(currExchange);
+        //currExchange = new CoinExchange(ExchangeType.COINEXCHANGE);
+        //allExchanges.add(currExchange);
 
         return allExchanges;
     }

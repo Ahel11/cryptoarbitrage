@@ -18,18 +18,24 @@ public class Crex24Handler {
         httpHandler = new HttpHandler();
     }
 
-    public ArrayList<String> generatePairsToFetch() throws Exception{
+    public ArrayList<String> generatePairsToFetch() {
         ArrayList<String> allPairs = new ArrayList<>();
-        String url = "https://api.crex24.com/v2/public/instruments";
+        try {
+            String url = "https://api.crex24.com/v2/public/instruments";
 
-        String resp = httpHandler.executeGetRequest(url);
-        JSONArray respJson = new JSONArray(resp);
+            String resp = httpHandler.executeGetRequest(url);
+            JSONArray respJson = new JSONArray(resp);
 
-        for(int i=0; i<respJson.length(); i++) {
-            JSONObject currJson = respJson.getJSONObject(i);
-            String currentCurrency = currJson.getString("symbol");
-            allPairs.add(currentCurrency);
+            for(int i=0; i<respJson.length(); i++) {
+                JSONObject currJson = respJson.getJSONObject(i);
+                String currentCurrency = currJson.getString("symbol");
+                allPairs.add(currentCurrency);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
+
 
         return allPairs;
     }
