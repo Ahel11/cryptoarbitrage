@@ -10,6 +10,8 @@ import java.util.Collections;
 
 public class CoreHandler {
 
+    private double requiredMinVolume = 20;
+
     public CoreHandler() {
 
     }
@@ -32,7 +34,20 @@ public class CoreHandler {
         }
 
         oppurtunities = partitionedOppurtunities(oppurtunities);
+        oppurtunities = applyFilter(oppurtunities);
         return oppurtunities;
+    }
+
+    private ArrayList <ArbitrageOppurtunity> applyFilter(ArrayList<ArbitrageOppurtunity> oppList) {
+        ArrayList<ArbitrageOppurtunity> filtered = new ArrayList<>();
+
+        for(ArbitrageOppurtunity currOpp: oppList) {
+            if(passesFilter(currOpp)) {
+                filtered.add(currOpp);
+            }
+        }
+
+        return filtered;
     }
 
     private ArrayList<ArbitrageOppurtunity> partitionedOppurtunities(ArrayList<ArbitrageOppurtunity> allOppurtunities) {
@@ -125,6 +140,13 @@ public class CoreHandler {
         oppurtunity.setPairType(askPair.getCryptoPair());
 
         return oppurtunity;
+    }
+
+    private boolean passesFilter(ArbitrageOppurtunity currOpp) {
+        if(currOpp.getMinVolume() >= requiredMinVolume) {
+            return true;
+        }
+        return false;
     }
 
 }

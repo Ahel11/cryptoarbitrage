@@ -1,3 +1,12 @@
+*) Fix uniform USD volume                                       *************
+
+*) Check BITTREX price issue
+
 *) Add orderVolume (from orderbook) to CoinExchange
+
+*) Check volume is correct
+
+*) Fix so that it not only last price in orderbook is checked
+   for profit
 
 *) Add total profit in $ in the ArbitrageOppurtunity listing
