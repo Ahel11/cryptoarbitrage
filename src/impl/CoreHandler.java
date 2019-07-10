@@ -36,8 +36,9 @@ public class CoreHandler {
             }
         }
 
-        oppurtunities = partitionedOppurtunities(oppurtunities);
+        //oppurtunities = partitionedOppurtunities(oppurtunities);
         oppurtunities = applyFilter(oppurtunities);
+        Collections.sort(oppurtunities);
         return oppurtunities;
     }
 
