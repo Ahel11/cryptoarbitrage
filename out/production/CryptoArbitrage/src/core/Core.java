@@ -101,8 +101,8 @@ public class Core {
         currExchange = new BinanceExchange(ExchangeType.BINANCE);
         allExchanges.add(currExchange);
 
-        //currExchange = new BittrexExchange(ExchangeType.BITTREX);
-        //allExchanges.add(currExchange);
+        currExchange = new BittrexExchange(ExchangeType.BITTREX);
+        allExchanges.add(currExchange);
 
          currExchange = new OKExchange(ExchangeType.OKEX);
         allExchanges.add(currExchange);

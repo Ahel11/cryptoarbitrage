@@ -13,6 +13,7 @@ public class ProfitCalculationHandler {
     private ArrayList<Order> bidList;
     private String type = "";
     private double maxUSDVolumeDisposable = 0;
+    StringBuffer currLogger = new StringBuffer();
 
     private ArrayList<ProfitCalculationHolder> profitCalculationList;
 
@@ -65,18 +66,41 @@ public class ProfitCalculationHandler {
 
         double buyPrice = bestAskOrder.getPrice();
         double sellPrice = bestBidOrder.getPrice();
+
+        currLogger.append("AskIndex:\t" + askIndex + "\n");
+        currLogger.append("BidIndex:\t" + bidIndex + "\n");
+        currLogger.append("BuyPrice:\t" + buyPrice + "\n");
+        currLogger.append("SellPrice:\t" + sellPrice + "\n\n");
+
+        currLogger.append("AskOrders:\n");
+        for(Order o: askList) {
+            currLogger.append(o.toString() + "\n");
+        }
+
+        currLogger.append("\nBidOrders:\n");
+        for(Order o: bidList) {
+            currLogger.append(o.toString() + "\n");
+        }
+
+
         double profit = calculateProfit(askIndex, bidIndex);
+
 
         holder.setBuyPrice(buyPrice);
         holder.setSellPrice(sellPrice);
         holder.setProfit(profit);
+
+        holder.setLogger(currLogger);
+        currLogger = new StringBuffer();
 
         return holder;
     }
 
     private double calculateProfit(int askIndex, int bidIndex) {
         double profit = 0;
-        double buyingPower = calculateBuyingPower();
+        double buyingPower = calculateBuyingPower(bidIndex);
+
+        currLogger.append("\nBuyingPower:\t" + buyingPower + "\n");
 
         int i=0, j=0;
 
@@ -86,7 +110,12 @@ public class ProfitCalculationHandler {
         //How much its sold for, wheter its BTC, ETH, USDT thats returned
         double soldTokensValue = sellTokens(boughtTokens, bidIndex);
 
+        currLogger.append("BoughtTokens:\t" + boughtTokens + "\n");
+        currLogger.append("SoldTokensVal:\t" + soldTokensValue + "\n");
+
         profit = soldTokensValue - buyingPower;
+
+        currLogger.append("Profit:\t" + profit);
 
         //TODO
         //Max volume to buy should be the max volume of the entire bidList
@@ -97,14 +126,23 @@ public class ProfitCalculationHandler {
     private double sellTokens(double nrOfTokens, int bidIndex) {
         double profit = 0;
         double totalNrOfTokensLeft = nrOfTokens;
+        currLogger.append("\n\n\nSelling tokens, bidIndex:\t" + bidIndex + "\n");
 
         for(int i=0; i<=bidIndex; i++) {
+            currLogger.append("\nSelling tokens, i= " + i + "\n");
             Order currOrder = bidList.get(i);
+            currLogger.append("CurrOrder:\t" + currOrder.toString() + "\n");
             if(totalNrOfTokensLeft > currOrder.getVolume()) {
-                profit += currOrder.getPrice() * currOrder.getVolume();
-                nrOfTokens = nrOfTokens - currOrder.getVolume();
+                currLogger.append(totalNrOfTokensLeft + " > " + currOrder.getVolume() + "\n");
+                profit = profit + currOrder.getPrice() * currOrder.getVolume();
+                currLogger.append("Profit:\t" + profit + "\n");
+                totalNrOfTokensLeft = totalNrOfTokensLeft - currOrder.getVolume();
+                currLogger.append("totalNrOfTokensLeft:\t" + totalNrOfTokensLeft + "\n");
             } else {
-                profit = profit + (currOrder.getPrice() * nrOfTokens);
+                currLogger.append(totalNrOfTokensLeft + " < " + currOrder.getVolume() + "\n");
+                currLogger.append("Profit = " + profit + " + " + (currOrder.getPrice() * totalNrOfTokensLeft) + "\n");
+                profit = profit + (currOrder.getPrice() * totalNrOfTokensLeft);
+                currLogger.append("Profit = \t" + profit + "\n");
                 return profit;
             }
         }
@@ -114,15 +152,24 @@ public class ProfitCalculationHandler {
     private double buyTokens(double buyingPower, int askIndex) {
         double nrOfTokensBought = 0;
         double totalBuyingPower = buyingPower;
+        currLogger.append("\n\n\nBuyig tokens, askIndex:\t" + askIndex + "\n");
 
         for(int i=0; i<=askIndex; i++) {
+            currLogger.append("\nBuyig tokens, i= " + i + "\n");
             Order currOrder = askList.get(i);
             double totalCostForCurrentOrder = currOrder.getPrice() * currOrder.getVolume();
+            currLogger.append("CurrOrder:\t" + currOrder.toString() + "\n");
+            currLogger.append("totalCostForCurrentOrder = " + String.valueOf(currOrder.getPrice()) + " * " + currOrder.getVolume() + " = " + totalCostForCurrentOrder + "\n");
             if(totalCostForCurrentOrder < totalBuyingPower) {
+                currLogger.append(totalCostForCurrentOrder + " < " + totalBuyingPower + "\n");
                 nrOfTokensBought += currOrder.getVolume();
                 totalBuyingPower = totalBuyingPower - totalCostForCurrentOrder;
+                currLogger.append("currOrder.Volume():\t" + currOrder.getVolume() + "\n");
+                currLogger.append("TotalBuyingPower:\t" + totalBuyingPower + "\n");
+                currLogger.append("NrOfBoughtTokens:\t" + nrOfTokensBought + "\n");
             } else {
                 nrOfTokensBought += (totalBuyingPower / currOrder.getPrice());
+                currLogger.append("NrOfTokensBought:\t" + nrOfTokensBought + "\n");
                 return nrOfTokensBought;
             }
         }
@@ -130,7 +177,30 @@ public class ProfitCalculationHandler {
         return nrOfTokensBought;
     }
 
-    private double calculateBuyingPower() {
+    private double calculateBuyingPower(int bidIndex) {
+        double disposableCashBuyingPower = getBuyingPowerBasedOnCash();
+        double buyingPowerBasedOnBids = getBuyingPowerBasedOnAllowedBids(bidIndex);
+
+        if(buyingPowerBasedOnBids < disposableCashBuyingPower) {
+            currLogger.append(String.valueOf(buyingPowerBasedOnBids) + " < " + String.valueOf(disposableCashBuyingPower) + "\n");
+            return buyingPowerBasedOnBids;
+        } else {
+            currLogger.append(String.valueOf(buyingPowerBasedOnBids) + " > " + String.valueOf(disposableCashBuyingPower) + "\n");
+            return disposableCashBuyingPower;
+        }
+    }
+
+    private double getBuyingPowerBasedOnAllowedBids(int bidIndex) {
+        double buyingPowerBasedOnBids = 0;
+
+        for(int i=0; i<=bidIndex; i++) {
+            buyingPowerBasedOnBids += (bidList.get(i).getPrice() * bidList.get(i).getVolume());
+        }
+
+        return  buyingPowerBasedOnBids;
+    }
+
+    private double getBuyingPowerBasedOnCash() {
         if(this.type.contains("BTC")) {
             return this.maxUSDVolumeDisposable * (1 / PriceUtils.BTCValue);
         } else if(this.type.contains("ETH")) {

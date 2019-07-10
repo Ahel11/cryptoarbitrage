@@ -6,6 +6,7 @@ public class ProfitCalculationHolder implements Comparable{
     private double sellPrice = 0;
     private double profit = 0;
     private double volume = 0;
+    private StringBuffer logger = new StringBuffer();
 
     @Override
     public int compareTo(Object o) {
@@ -50,5 +51,11 @@ public class ProfitCalculationHolder implements Comparable{
         this.volume = volume;
     }
 
+    public StringBuffer getLogger() {
+        return logger;
+    }
 
+    public void setLogger(StringBuffer logger) {
+        this.logger = logger;
+    }
 }

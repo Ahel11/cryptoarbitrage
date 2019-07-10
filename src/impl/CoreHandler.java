@@ -17,7 +17,7 @@ public class CoreHandler {
     private double requiredMinPerc = 1.3;
     private double maxPerc = 10;
 
-    private double minProfitDollar = 5;
+    private double minProfitDollar = 1;
     private double maxProfitDollar = 200;
 
     public CoreHandler() {
@@ -139,6 +139,9 @@ public class CoreHandler {
         }
 
         ProfitCalculationHolder bestProfitConditions = profitHandler.calculateBestProfit();
+        if(bestProfitConditions.getProfit() > 5) {
+            System.out.print(bestProfitConditions.getLogger().toString());
+        }
 
         //oppurtunity.setMinVolume(minVolume);
         oppurtunity.setProfitDollar(bestProfitConditions.getProfit());
