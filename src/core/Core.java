@@ -17,7 +17,26 @@ public class Core {
         initializeBasePrices();
         initializeExchanges();
         startAllExchnages();
-        getArbitrage();
+        //getArbitrage();
+        printAll();
+    }
+
+    public void printAll() {
+        checkIfFinished();
+        for(Exchange e: allExchanges) {
+            e.printAllPairs();;
+        }
+    }
+
+    public void checkIfFinished() {
+        while(true) {
+            if(!isAllExchangeSyncFinished()) {
+                System.out.print("Checking....\n");
+                sleep(600);
+                continue;
+            }
+            break;
+        }
     }
 
     //Core functionalities
@@ -85,7 +104,7 @@ public class Core {
         //currExchange = new BittrexExchange(ExchangeType.BITTREX);
         //allExchanges.add(currExchange);
 
-        currExchange = new OKExchange(ExchangeType.OKEX);
+        /*currExchange = new OKExchange(ExchangeType.OKEX);
         allExchanges.add(currExchange);
 
         currExchange = new HitBtcExchange(ExchangeType.HITBTC);
@@ -106,10 +125,12 @@ public class Core {
         currExchange = new BitmartExchange(ExchangeType.BITMART);
         allExchanges.add(currExchange);
 
-        //currExchange = new Crex24Exchange(ExchangeType.CREX24);
-        //allExchanges.add(currExchange);
+        //
 
         currExchange = new CoinExchange(ExchangeType.COINEXCHANGE);
+        allExchanges.add(currExchange);
+        */
+        currExchange = new Crex24Exchange(ExchangeType.CREX24);
         allExchanges.add(currExchange);
 
         return allExchanges;

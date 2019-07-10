@@ -4,7 +4,9 @@
 
 *) Debug CREX24 and make sure its running good
 
-*) Check BITTREX price issue
+*) Calculate how much ETH to send for each arbitrage (separate variable)
+
+*) Check BITTREX price issue (worst case fetch from BITTREX won API)
 
 *) Add orderVolume (from orderbook) to CoinExchange
 

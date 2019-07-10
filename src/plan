@@ -1,8 +1,13 @@
-*) Fix uniform USD volume                                       *************
+*) Fix uniform USD volume                                                   *************
 
-*) Add total profit in $ in the ArbitrageOppurtunity listing    *************
+*) Add total profit in $ in the ArbitrageOppurtunity listing                *************
 
-*) Debug CREX24 and make sure its running good
+*) Debug CREX24 and make sure its running good                              *************
+
+*) Fix so that it not only last price in orderbook is checked
+   for profit
+
+*) Retrieve prices from Livecoin and YoBit and other exchanges
 
 *) Calculate how much ETH to send for each arbitrage (separate variable)
 
@@ -10,5 +15,4 @@
 
 *) Add orderVolume (from orderbook) to CoinExchange
 
-*) Fix so that it not only last price in orderbook is checked
-   for profit
+
