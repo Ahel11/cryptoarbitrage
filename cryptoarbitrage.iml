@@ -12,7 +12,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/commons-codec-1.9.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/commons-codec-1.9.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -21,7 +21,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/commons-logging-1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/commons-logging-1.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -30,7 +30,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/fluent-hc-4.5.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/fluent-hc-4.5.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -39,7 +39,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/httpclient-4.5.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/httpclient-4.5.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -48,7 +48,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/httpclient-cache-4.5.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/httpclient-cache-4.5.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -57,7 +57,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/httpclient-win-4.5.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/httpclient-win-4.5.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -66,7 +66,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/httpcore-4.4.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/httpcore-4.4.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -75,7 +75,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/httpmime-4.5.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/httpmime-4.5.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -84,18 +84,18 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/java-json.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/java-json.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/java-json.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/java-json.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/jna-4.1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/jna-4.1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -104,7 +104,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/jna-platform-4.1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/jna-platform-4.1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -113,18 +113,18 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/json-lib.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/json-lib.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/json-lib.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/json-lib.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/NeededLibsForCrypto/jsoup-1.11.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../NeededLibsForCrypto/jsoup-1.11.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

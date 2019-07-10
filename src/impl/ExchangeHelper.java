@@ -1,4 +1,7 @@
-package model;
+package impl;
+
+import model.CryptoPair;
+import model.Order;
 
 import java.util.ArrayList;
 

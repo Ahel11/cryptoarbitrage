@@ -2,16 +2,8 @@ package exchange;
 
 import core.Core;
 import model.CryptoPair;
-import model.ExchangeHelper;
-import model.Order;
+import impl.ExchangeHelper;
 import model.ShrimpyHandler;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

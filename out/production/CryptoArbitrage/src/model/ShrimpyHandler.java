@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class ShrimpyHandler {
     private HttpClient client;
+    private static int arrayLookBack = 5;
 
     public ShrimpyHandler() {
         initialize();
@@ -111,6 +112,10 @@ public class ShrimpyHandler {
                     JSONArray askArr = orderBookJsonObj.getJSONArray("asks");
                     JSONArray bidsArr = orderBookJsonObj.getJSONArray("bids");
 
+                    if(askArr.length() == 0 || bidsArr.length() ==0) {
+                        continue;
+                    }
+
                     CryptoPair generatedCryptoPair = generateCryptoPairFromAskAndBid(quoteSymbol, askArr, bidsArr);
                     generatedCryptoPair.setExchangeType(exchage);
                     generatedCryptoPair.setCryptoPair(pair);
@@ -127,6 +132,9 @@ public class ShrimpyHandler {
 
     private CryptoPair generateCryptoPairFromAskAndBid(String quoteSymbol, JSONArray asks, JSONArray bids) throws Exception{
         CryptoPair pairToReturn = new CryptoPair();
+        ArrayList<Order> askList = new ArrayList<>();
+        ArrayList<Order> bidList = new ArrayList<>();
+
         JSONObject bestBidObj = bids.getJSONObject(0);
         JSONObject bestAskObj = asks.getJSONObject(0);
         double currP = 0, currQ = 0, usdVolume = 0;
@@ -153,7 +161,30 @@ public class ShrimpyHandler {
         pairToReturn.setBestAsk(bestAskOrder);
         pairToReturn.setBestBid(bestBidOrder);
 
+        //Set ask and bid list
+        for(int i=0; i<asks.length() && i<arrayLookBack; i++) {
+            askList.add(getOrderFromJSONRepresentation(asks.getJSONObject(i)));
+        }
+
+        for(int i=0; i<bids.length() && i<arrayLookBack; i++) {
+            bidList.add(getOrderFromJSONRepresentation(bids.getJSONObject(i)));
+        }
+
+        pairToReturn.setAskOrders(askList);
+        pairToReturn.setBidOrders(bidList);
+
         return pairToReturn;
+    }
+
+    private Order getOrderFromJSONRepresentation(JSONObject currJson) {
+        Order orderToReturn = new Order();
+        try {
+            orderToReturn.setPrice(Double.parseDouble(currJson.getString("price")));
+            orderToReturn.setVolume(Double.parseDouble(currJson.getString("quantity")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return orderToReturn;
     }
 
     private String executeRequest(String url) {

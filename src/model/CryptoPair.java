@@ -1,13 +1,17 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CryptoPair {
 
     private Order bestAsk;
     private Order bestBid;
+    private List<Order> askOrders;
+    private List<Order> bidOrders;
     private String cryptoPair;
     private String exchangeType;
+
 
     public Order getBestAsk() {
         return bestAsk;
@@ -39,6 +43,22 @@ public class CryptoPair {
 
     public void setExchangeType(String exchangeType) {
         this.exchangeType = exchangeType;
+    }
+
+    public List<Order> getAskOrders() {
+        return askOrders;
+    }
+
+    public void setAskOrders(List<Order> askOrders) {
+        this.askOrders = askOrders;
+    }
+
+    public List<Order> getBidOrders() {
+        return bidOrders;
+    }
+
+    public void setBidOrders(List<Order> bidOrders) {
+        this.bidOrders = bidOrders;
     }
 
     @Override

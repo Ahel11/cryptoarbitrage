@@ -2,13 +2,10 @@ package exchange;
 
 import core.Core;
 import model.CryptoPair;
-import model.ExchangeHelper;
-import model.Order;
+import impl.ExchangeHelper;
 import model.ShrimpyHandler;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class BinanceExchange  extends Exchange {
 

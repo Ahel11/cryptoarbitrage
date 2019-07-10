@@ -7,6 +7,8 @@
 *) Fix so that it not only last price in orderbook is checked
    for profit
 
+*) Add ask/bid list to coinExchange
+
 *) Retrieve prices from Livecoin and YoBit and other exchanges
 
 *) Calculate how much ETH to send for each arbitrage (separate variable)

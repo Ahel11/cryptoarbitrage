@@ -17,8 +17,8 @@ public class Core {
         initializeBasePrices();
         initializeExchanges();
         startAllExchnages();
-        //getArbitrage();
-        printAll();
+        getArbitrage();
+        //printAll();
     }
 
     public void printAll() {
@@ -104,7 +104,7 @@ public class Core {
         //currExchange = new BittrexExchange(ExchangeType.BITTREX);
         //allExchanges.add(currExchange);
 
-        /*currExchange = new OKExchange(ExchangeType.OKEX);
+         currExchange = new OKExchange(ExchangeType.OKEX);
         allExchanges.add(currExchange);
 
         currExchange = new HitBtcExchange(ExchangeType.HITBTC);
@@ -127,11 +127,11 @@ public class Core {
 
         //
 
-        currExchange = new CoinExchange(ExchangeType.COINEXCHANGE);
-        allExchanges.add(currExchange);
-        */
-        currExchange = new Crex24Exchange(ExchangeType.CREX24);
-        allExchanges.add(currExchange);
+        //currExchange = new CoinExchange(ExchangeType.COINEXCHANGE);
+        //allExchanges.add(currExchange);
+
+        //currExchange = new Crex24Exchange(ExchangeType.CREX24);
+        //allExchanges.add(currExchange);
 
         return allExchanges;
     }

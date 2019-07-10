@@ -5,6 +5,7 @@ import exchange.ExchangeType;
 import model.ArbitrageOppurtunity;
 import model.CryptoPair;
 import model.PriceUtils;
+import model.ProfitCalculationHolder;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -25,11 +26,6 @@ public class CoreHandler {
 
     public ArrayList<ArbitrageOppurtunity> calculateArbitrageOppurtunities(ArrayList<Exchange> allExchanges) {
         ArrayList<ArbitrageOppurtunity> oppurtunities = new ArrayList<>();
-
-        // FOR EACH PAIR IN EXCHANGE
-        //      FIND SAME PAIR IN OTHER EXCHANGES
-        //      CHECK IF ASK ON FIRST EXCHANGE IS LOWER THAN BID ON OTHER EXCHANGE
-        //          IF LOWER, GENERATE ARBITRAGE OBJECT AND ADD TO LIST
 
         for(Exchange currExchange: allExchanges) {
             ArrayList<CryptoPair> allPairsForExchange = currExchange.getExchangePairs();
@@ -132,13 +128,22 @@ public class CoreHandler {
         }*/
 
 
-        String buyFrom = askPair.getExchangeType();
-        String sellTo = bidPair.getExchangeType();
+        ProfitCalculationHandler profitHandler = new ProfitCalculationHandler();
+        profitHandler.setAskList((ArrayList)askPair.getAskOrders());
+        profitHandler.setBidList((ArrayList)bidPair.getBidOrders());
+        profitHandler.setType(askPair.getCryptoPair());
+        profitHandler.setMaxUSDVolumeDisposable(this.maxArbitrageCash);
+
+        if(askPair.getAskOrders() == null || bidPair.getBidOrders() == null) {
+            System.out.print("Here\n");
+        }
+
+        ProfitCalculationHolder bestProfitConditions = profitHandler.calculateBestProfit();
 
         //oppurtunity.setMinVolume(minVolume);
-        oppurtunity.setProfitDollar(calculateProfitDollar(askPair,bidPair));
-        oppurtunity.setBuyPrice(askPair.getBestAsk().getPrice());
-        oppurtunity.setSellPrice(bidPair.getBestBid().getPrice());
+        oppurtunity.setProfitDollar(bestProfitConditions.getProfit());
+        oppurtunity.setBuyPrice(bestProfitConditions.getBuyPrice());
+        oppurtunity.setSellPrice(bestProfitConditions.getSellPrice());
         oppurtunity.setFromExchange(askPair.getExchangeType());
         oppurtunity.setToExchange(bidPair.getExchangeType());
         oppurtunity.setPairType(askPair.getCryptoPair());

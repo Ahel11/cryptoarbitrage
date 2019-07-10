@@ -4,7 +4,7 @@ import core.Core;
 import impl.Crex24Handler;
 import impl.Crex24HandlerThread;
 import model.CryptoPair;
-import model.ExchangeHelper;
+import impl.ExchangeHelper;
 
 import java.util.ArrayList;
 

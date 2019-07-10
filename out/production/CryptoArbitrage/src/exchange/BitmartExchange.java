@@ -2,7 +2,7 @@ package exchange;
 
 import core.Core;
 import model.CryptoPair;
-import model.ExchangeHelper;
+import impl.ExchangeHelper;
 import model.ShrimpyHandler;
 
 import java.util.ArrayList;

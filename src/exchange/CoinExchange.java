@@ -3,7 +3,7 @@ package exchange;
 import core.Core;
 import impl.CoinExchangeHandler;
 import model.CryptoPair;
-import model.ExchangeHelper;
+import impl.ExchangeHelper;
 
 import java.util.ArrayList;
 import java.util.HashSet;
