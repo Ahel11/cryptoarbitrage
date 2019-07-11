@@ -4,10 +4,10 @@
 
 *) Debug CREX24 and make sure its running good                              *************
 
-*) Fix so that it not only last price in orderbook is checked
+*) Fix so that it not only last price in orderbook is checked               *************
    for profit
 
-*) Add ask/bid list to coinExchange
+*) Add ask/bid list to coinExchange/CREX24
 
 *) Retrieve prices from Livecoin and YoBit and other exchanges
 

@@ -83,6 +83,7 @@ public class Core {
     public boolean isAllExchangeSyncFinished() {
         for(Exchange currExchange: allExchanges) {
             if(!currExchange.isFinishedSync()) {
+                System.out.print(currExchange.getExchangeType() + "\n");
                 return false;
             }
         }
@@ -127,11 +128,11 @@ public class Core {
 
         //
 
-        //currExchange = new CoinExchange(ExchangeType.COINEXCHANGE);
-        //allExchanges.add(currExchange);
+        currExchange = new CoinExchange(ExchangeType.COINEXCHANGE);
+        allExchanges.add(currExchange);
 
-        //currExchange = new Crex24Exchange(ExchangeType.CREX24);
-        //allExchanges.add(currExchange);
+        currExchange = new Crex24Exchange(ExchangeType.CREX24);
+        allExchanges.add(currExchange);
 
         return allExchanges;
     }

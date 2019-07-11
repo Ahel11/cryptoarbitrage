@@ -54,8 +54,8 @@ public class Crex24Exchange extends Exchange{
                 if(allPairs == null) {
                     exchangeSleep(2000 + increment);
                     allPairs = handler.generatePairsToFetch();
-                    System.out.print("CREX FAILED\n");
-                    increment += 500;
+                    System.out.print("CREX  FAILED\n");
+                    increment += 3000;
                 } else {
                     System.out.print("CREX SUCCEEDED\n");
                     break;

@@ -108,9 +108,9 @@ public class ArbitrageOppurtunity implements Comparable{
     @Override
     public int compareTo(Object o) {
         ArbitrageOppurtunity curr = (ArbitrageOppurtunity)o;
-        if(this.getProfitDollar() > curr.getProfitDollar()) {
+        if(this.getProfitPerc() > curr.getProfitPerc()) {
             return 1;
-        } else if(this.getProfitDollar() < curr.getProfitDollar()) {
+        } else if(this.getProfitPerc() < curr.getProfitPerc()) {
             return -1;
         } else {
             return 0;

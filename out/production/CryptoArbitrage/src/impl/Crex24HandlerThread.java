@@ -4,7 +4,7 @@ import exchange.Crex24Exchange;
 import model.CryptoPair;
 
 public class Crex24HandlerThread extends Thread{
-    private static int totalNrOfAttempts = 5;
+    private static int totalNrOfAttempts = 7;
     private String pair = "";
     private Crex24Handler handler;
 
@@ -16,6 +16,9 @@ public class Crex24HandlerThread extends Thread{
     public void run() {
         int nrOfRetries = 0;
         CryptoPair pair = null;
+        long sleepIncrement = 1000;
+        long totToSleep = sleepIncrement;
+
         try {
             while(true) {
                 pair = attemptToGenerateCryptoPair(this.pair);
@@ -23,7 +26,8 @@ public class Crex24HandlerThread extends Thread{
                     break;
                 }
                 nrOfRetries++;
-                Thread.sleep(1900);
+                Thread.sleep(totToSleep);
+                totToSleep = totToSleep + sleepIncrement;
                 if(nrOfRetries == totalNrOfAttempts) {
                     break;
                 }

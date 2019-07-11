@@ -14,8 +14,8 @@ import java.util.Collections;
 public class CoreHandler {
 
     private double maxArbitrageCash = 3000;
-    private double requiredMinPerc = 1.3;
-    private double maxPerc = 10;
+    private double minPerc = 1.3;
+    private double maxPerc = 60;
 
     private double minProfitDollar = 1;
     private double maxProfitDollar = 200;
@@ -123,13 +123,7 @@ public class CoreHandler {
 
         double perc = 100 * ((bidPair.getBestBid().getPrice() / askPair.getBestAsk().getPrice()) - 1);
 
-        /*double minVolume = askPair.getBestAsk().getVolume();
-        if(bidPair.getBestBid().getVolume() < minVolume) {
-            minVolume = bidPair.getBestBid().getVolume();
-        }*/
-
-
-        ProfitCalculationHandler profitHandler = new ProfitCalculationHandler();
+        /*ProfitCalculationHandler profitHandler = new ProfitCalculationHandler();
         profitHandler.setAskList((ArrayList)askPair.getAskOrders());
         profitHandler.setBidList((ArrayList)bidPair.getBidOrders());
         profitHandler.setType(askPair.getCryptoPair());
@@ -142,12 +136,13 @@ public class CoreHandler {
         ProfitCalculationHolder bestProfitConditions = profitHandler.calculateBestProfit();
         if(bestProfitConditions.getProfit() > 5) {
             System.out.print(bestProfitConditions.getLogger().toString());
-        }
+        }*/
 
         //oppurtunity.setMinVolume(minVolume);
-        oppurtunity.setProfitDollar(bestProfitConditions.getProfit());
-        oppurtunity.setBuyPrice(bestProfitConditions.getBuyPrice());
-        oppurtunity.setSellPrice(bestProfitConditions.getSellPrice());
+        oppurtunity.setProfitDollar(0);
+        oppurtunity.setProfitPerc(perc);
+        oppurtunity.setBuyPrice(askPair.getBestAsk().getPrice());
+        oppurtunity.setSellPrice(bidPair.getBestBid().getPrice());
         oppurtunity.setFromExchange(askPair.getExchangeType());
         oppurtunity.setToExchange(bidPair.getExchangeType());
         oppurtunity.setPairType(askPair.getCryptoPair());
@@ -220,12 +215,12 @@ public class CoreHandler {
     }
 
     private boolean passesFilter(ArbitrageOppurtunity currOpp) {
-        if(currOpp.getProfitDollar() >= minProfitDollar && currOpp.getProfitDollar() <= maxProfitDollar) {
+        if(currOpp.getProfitPerc() >= minPerc && currOpp.getProfitPerc() <= maxPerc) {
             return true;
         }
         return false;
     }
-
+ 
 }
 
 
