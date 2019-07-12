@@ -12,6 +12,9 @@ public class ExchangeType {
     public static final String KUCOIN = "KUCOIN";
     public static final String BITMART = "BITMART";
     public static final String CREX24 = "CREX24";
+    public static final String LIVECOIN = "LIVECOIN";
     public static final String COINEXCHANGE = "COINEXCHANGE";
+    public static final String YOBIT = "YOBIT";
+
 
 }

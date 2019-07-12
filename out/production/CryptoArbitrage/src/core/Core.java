@@ -145,6 +145,9 @@ public class Core {
         currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
+        currExchange = new LivecoinExchange(ExchangeType.LIVECOIN);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
+        allExchanges.add(currExchange);
         //
 
         currExchange = new CoinExchange(ExchangeType.COINEXCHANGE);
@@ -152,6 +155,10 @@ public class Core {
         allExchanges.add(currExchange);
 
         currExchange = new Crex24Exchange(ExchangeType.CREX24);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
+        allExchanges.add(currExchange);
+
+        currExchange = new Crex24Exchange(ExchangeType.YOBIT);
         currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
