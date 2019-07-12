@@ -4,14 +4,18 @@
 
 *) Debug CREX24 and make sure its running good                              *************
 
-*) Given a list of CryptoPairs , generate the bidArr for each pair
+*) Retrieve prices from Livecoin and YoBit                                  *************
 
-*) Retrieve prices from Livecoin and YoBit and other exchanges
+*) Add profitHandler to calculate profit for each arbitrage Opp             *************
+
+*) Additional exchanges to implement:
+    -) FATBTC
+    -) COINBENE
+    -) COINEGG
+    -) HOTBIT
+    -) COINEAL
+    -) LATOKEN
+    -) BITKER
+    -) LIQUID
 
 *) Calculate how much ETH to send for each arbitrage (separate variable)
-
-*) Check BITTREX price issue (worst case fetch from BITTREX won API)
-
-*) Add orderVolume (from orderbook) to CoinExchange
-
-

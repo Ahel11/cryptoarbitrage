@@ -4,6 +4,7 @@ public class PriceUtils {
 
     public static double BTCValue = 0;
     public static double ETHValue = 0;
+    public static double DOGEValue = 0;
 
     public synchronized static double calculateCryptoBTCToUsdValue(double amount, double rate) {
         double usdValue = 0;

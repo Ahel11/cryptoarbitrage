@@ -18,10 +18,19 @@ public class Core {
 
     public Core() {
 
+        System.out.print("Initializing arr...\n");
         initializeAllSymbolsJsonArr();
+
+        System.out.print("Initializing basePrices...\n");
         initializeBasePrices();
+
+        System.out.print("Initializing exchanges...\n");
         initializeExchanges();
+
+        System.out.print("Starting exchanges...\n");
         startAllExchnages();
+
+        System.out.print("Beginning arbitrages...\n");
         getArbitrage();
         //printAll();
     }
@@ -103,6 +112,7 @@ public class Core {
     private void initializeBasePrices() {
         PriceUtils.ETHValue = ShrimpyHandler.getETHRate();
         PriceUtils.BTCValue = ShrimpyHandler.getBTCRate();
+        PriceUtils.DOGEValue = ShrimpyHandler.getDOGERate();
     }
 
     private ArrayList<Exchange> getAllExchanges() {

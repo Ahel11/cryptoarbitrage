@@ -1,7 +1,6 @@
 package exchange;
 
 import core.Core;
-import impl.CoinExchangeHandler;
 import model.CryptoPair;
 import impl.ExchangeHelper;
 

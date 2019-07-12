@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CoinApiParser {
 
@@ -29,6 +30,9 @@ public class CoinApiParser {
 
             ArrayList<Order> askList = generateOrderArray(Order.ASK, asks);
             ArrayList<Order> bidList = generateOrderArray(Order.BID, bids);
+            Collections.reverse(bidList);
+            Collections.reverse(askList);
+
             if(askList.size() == 0 || bidList.size() == 0) {
                 return null;
             }
@@ -39,6 +43,8 @@ public class CoinApiParser {
             pairToReturn.setCryptoPair(generatePairType(splittedSymbol, symbolId));
             pairToReturn.setBestBid(bestBid);
             pairToReturn.setBestAsk(bestAsk);
+            pairToReturn.setAskOrders(askList);
+            pairToReturn.setBidOrders(bidList);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,6 +68,7 @@ public class CoinApiParser {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Collections.reverse(generatedOrderList);
         return generatedOrderList;
     }
 

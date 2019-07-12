@@ -7,6 +7,8 @@ public class ArbitrageOppurtunity implements Comparable{
     private String fromExchange;
     private String toExchange;
     private String pairType;
+    private CryptoPair bidPair;
+    private CryptoPair askPair;
     private double buyPrice;
     private double sellPrice;
     private double profitPerc;
@@ -93,6 +95,17 @@ public class ArbitrageOppurtunity implements Comparable{
 
     @Override
     public String toString() {
+        StringBuffer askListBuf = new StringBuffer();
+        StringBuffer bidListBuf = new StringBuffer();
+
+        for(Order askOrder: this.askPair.getAskOrders()) {
+            askListBuf.append(askOrder.toString() + "\n");
+        }
+
+        for(Order askOrder: this.bidPair.getBidOrders()) {
+            bidListBuf.append(askOrder.toString() + "\n");
+        }
+
         return "FROM:\t\t" + fromExchange +
                 "\t\tTO:\t\t" + toExchange  +
                 "\t\t\tbuyPrice:\t\t" + format.format(buyPrice)+
@@ -100,13 +113,11 @@ public class ArbitrageOppurtunity implements Comparable{
                 "\t\tprofitPerc:\t\t" + formatPerc.format(profitPerc) + "%" +
                 "\t\tpP$:\t\t" + formatPerc.format(profitDollar) +
                 //"\t\tminVolume:\t\t" + formatPerc.format(minVolume) +
-                "\t\tPair:\t\t" + this.pairType;
+                "\t\tPair:\t\t" + this.pairType ;
+        // + "\n\nAsks:\n" + askListBuf.toString() + "\n\nBids:\n" + bidListBuf.toString() + "\n\n";
     }
 
-
-
-    @Override
-    public int compareTo(Object o) {
+    public int comparePerc(Object o) {
         ArbitrageOppurtunity curr = (ArbitrageOppurtunity)o;
         if(this.getProfitPerc() > curr.getProfitPerc()) {
             return 1;
@@ -115,6 +126,38 @@ public class ArbitrageOppurtunity implements Comparable{
         } else {
             return 0;
         }
+    }
+
+    public int compareProfit(Object o) {
+        ArbitrageOppurtunity curr = (ArbitrageOppurtunity)o;
+        if(this.getProfitDollar() > curr.getProfitDollar()) {
+            return 1;
+        } else if(this.getProfitDollar() < curr.getProfitDollar()) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    public CryptoPair getBidPair() {
+        return bidPair;
+    }
+
+    public void setBidPair(CryptoPair bidPair) {
+        this.bidPair = bidPair;
+    }
+
+    public CryptoPair getAskPair() {
+        return askPair;
+    }
+
+    public void setAskPair(CryptoPair askPair) {
+        this.askPair = askPair;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return compareProfit(o);
     }
 }
 

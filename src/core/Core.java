@@ -112,6 +112,7 @@ public class Core {
     private void initializeBasePrices() {
         PriceUtils.ETHValue = ShrimpyHandler.getETHRate();
         PriceUtils.BTCValue = ShrimpyHandler.getBTCRate();
+        PriceUtils.DOGEValue = ShrimpyHandler.getDOGERate();
     }
 
     private ArrayList<Exchange> getAllExchanges() {

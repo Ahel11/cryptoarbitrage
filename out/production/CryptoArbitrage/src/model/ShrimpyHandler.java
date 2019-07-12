@@ -58,6 +58,36 @@ public class ShrimpyHandler {
         return btcRate;
     }
 
+    public static double getDOGERate() {
+        double btcRate = 0;
+        try {
+
+            HttpClient tempClient = HttpClientBuilder.create().build();
+            String url = "https://dev-api.shrimpy.io/v1/orderbooks?exchange=binance&baseSymbol=DOGE&quoteSymbol=USDT&limit=1";
+            HttpGet get = new HttpGet(url);
+            HttpResponse resp = tempClient.execute(get);
+            String respString = EntityUtils.toString(resp.getEntity());
+
+            JSONArray respJsonArr = new JSONArray(respString);
+            JSONObject obj = respJsonArr.getJSONObject(0);
+            JSONArray books = obj.getJSONArray("orderBooks");
+
+            JSONObject bookObj = books.getJSONObject(0);
+            JSONObject bookObj2 = bookObj.getJSONObject("orderBook");
+
+            JSONArray asks = bookObj2.getJSONArray("asks");
+            JSONObject finalObj = (JSONObject)asks.get(0);
+
+            btcRate = Double.parseDouble(finalObj.getString("price"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return btcRate;
+    }
+
     public static double getETHRate() {
         double btcRate = 0;
         try {

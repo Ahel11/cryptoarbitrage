@@ -109,6 +109,8 @@ public class ScratchMain {
 
     }
 
+
+
     public static double calculateTokenNrToBuy(int index, ArrayList<PriceHolder> priceList) {
         double tokensNr = 0;
 

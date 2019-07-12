@@ -16,6 +16,7 @@ public class CoreHandler {
     private double maxArbitrageCash = 3000;
     private double minPerc = 1.3;
     private double maxPerc = 60;
+    private ProfitHandler profitHandler = new ProfitHandler();
 
     private double minProfitDollar = 1;
     private double maxProfitDollar = 200;
@@ -31,6 +32,9 @@ public class CoreHandler {
             ArrayList<CryptoPair> allPairsForExchange = currExchange.getExchangePairs();
             for(CryptoPair currCryptoPairForCurrExchange: allPairsForExchange) {
                 ArrayList<CryptoPair> pairsFromOtherExchanges = getPairFromOtherExchanges(currCryptoPairForCurrExchange, allExchanges);
+                if(pairsFromOtherExchanges.size() == 0) {
+                    continue;
+                }
                 ArrayList<ArbitrageOppurtunity> generatedOppurtunities = generateArbitrageOppurtunities(currCryptoPairForCurrExchange, pairsFromOtherExchanges);
                 oppurtunities.addAll(generatedOppurtunities);
             }
@@ -111,6 +115,8 @@ public class CoreHandler {
         for(CryptoPair currPairFromOtherExchange: pairsFromOtherExchanges) {
             if(currPair.getBestAsk().getPrice() < currPairFromOtherExchange.getBestBid().getPrice()) {
                 ArbitrageOppurtunity opp = generateArbitrageObj(currPair, currPairFromOtherExchange);
+                opp.setAskPair(currPair);
+                opp.setBidPair(currPairFromOtherExchange);
                 arbitrageOppurtunities.add(opp);
             }
         }
@@ -123,23 +129,13 @@ public class CoreHandler {
 
         double perc = 100 * ((bidPair.getBestBid().getPrice() / askPair.getBestAsk().getPrice()) - 1);
 
-        /*ProfitCalculationHandler profitHandler = new ProfitCalculationHandler();
-        profitHandler.setAskList((ArrayList)askPair.getAskOrders());
-        profitHandler.setBidList((ArrayList)bidPair.getBidOrders());
-        profitHandler.setType(askPair.getCryptoPair());
-        profitHandler.setMaxUSDVolumeDisposable(this.maxArbitrageCash);
+        //LEFT -> BUYING
+        //
 
-        if(askPair.getAskOrders() == null || bidPair.getBidOrders() == null) {
-            System.out.print("Here\n");
-        }
-
-        ProfitCalculationHolder bestProfitConditions = profitHandler.calculateBestProfit();
-        if(bestProfitConditions.getProfit() > 5) {
-            System.out.print(bestProfitConditions.getLogger().toString());
-        }*/
+        double profit = profitHandler.calculateProfit(askPair.getCryptoPair(), askPair.getBestAsk(), (ArrayList)bidPair.getBidOrders());
 
         //oppurtunity.setMinVolume(minVolume);
-        oppurtunity.setProfitDollar(0);
+        oppurtunity.setProfitDollar(profit);
         oppurtunity.setProfitPerc(perc);
         oppurtunity.setBuyPrice(askPair.getBestAsk().getPrice());
         oppurtunity.setSellPrice(bidPair.getBestBid().getPrice());
