@@ -2,9 +2,7 @@ package impl;
 
 import exchange.ExchangeType;
 import model.CryptoPair;
-import model.HttpHandler;
 import model.Order;
-import org.apache.http.client.HttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

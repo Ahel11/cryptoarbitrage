@@ -1,6 +1,7 @@
 
-package model;
+package impl;
 
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -22,6 +23,20 @@ public class HttpHandler {
 
         try {
             HttpGet get = new HttpGet(url);
+            HttpResponse resp = client.execute(get);
+            String respString = EntityUtils.toString(resp.getEntity());
+            return respString;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String executeGetRequest(String url, Header header) {
+
+        try {
+            HttpGet get = new HttpGet(url);
+            get.setHeader(header);
             HttpResponse resp = client.execute(get);
             String respString = EntityUtils.toString(resp.getEntity());
             return respString;

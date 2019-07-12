@@ -1,11 +1,80 @@
 package scratch;
 
+import impl.HttpHandler;
+import org.apache.http.Header;
+import org.apache.http.message.BasicHeader;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Main {
+public class ScratchMain {
+    private static String symbolsUrl = "https://rest.coinapi.io/v1/symbols";
+    private static String orderBooksUrl = "https://rest.coinapi.io/v1/orderbooks/current?filter_symbol_id=";
+
     public static void main(String args[]) {
-        checkBestProfit();
+        //checkBestProfit();
+        orderBookTest();
+    }
+
+    public static void orderBookTest() {
+        try {
+            String orderBook = "https://rest.coinapi.io/v1/orderbooks/current?limit=5";
+            HttpHandler handler = new HttpHandler();
+            Header header = new BasicHeader("X-CoinAPI-Key", "BF277330-BCED-43FF-A339-C014A900F9CB");
+            String respString = handler.executeGetRequest(orderBook, header);
+
+            System.out.print("RESPSTRINGLENGTH:\t" + respString.length() + "\n");
+            JSONArray arr = new JSONArray(respString);
+
+
+            for(int i=3000; i<3100; i++) {
+                JSONObject currObj = (JSONObject)arr.getJSONObject(i);
+            }
+
+            System.out.print(respString);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void checkCoinApi() {
+        String symbolIdArr = "{";
+        try {
+            HttpHandler handler = new HttpHandler();
+            Header header = new BasicHeader("X-CoinAPI-Key", "BF277330-BCED-43FF-A339-C014A900F9CB");
+            String respString = handler.executeGetRequest(symbolsUrl, header);
+
+
+            JSONArray respJsonArr = new JSONArray(respString);
+
+            for(int i=1000; i<1005; i++) {
+                JSONObject currObj = (JSONObject)respJsonArr.getJSONObject(i);
+                if(symbolIdArr.equals("{")){
+                    symbolIdArr = symbolIdArr + currObj.getString("symbol_id");
+                } else {
+                    symbolIdArr = symbolIdArr + "," + currObj.getString("symbol_id");
+                }
+            }
+            symbolIdArr = symbolIdArr + "}";
+
+            System.out.print("\n\n" + symbolIdArr);
+
+            String urlForOrderBook = orderBooksUrl + symbolIdArr;
+            String orderBookResp = handler.executeGetRequest(urlForOrderBook, header);
+
+            System.out.print("\n\n\n\nOrderBookLength:\t" + orderBookResp.length() + "\n");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 
     public static void checkBestProfit() {

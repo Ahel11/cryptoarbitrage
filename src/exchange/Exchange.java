@@ -2,12 +2,14 @@ package exchange;
 
 import impl.ExchangeImpl;
 import model.CryptoPair;
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Exchange extends Thread implements ExchangeImpl {
 
+    private JSONArray allSymbolsJsonArr;
     private String exchangeType = "";
     private ArrayList<CryptoPair> exchangePairs;
     private boolean finishedSync = false;
@@ -57,5 +59,13 @@ public class Exchange extends Thread implements ExchangeImpl {
             e.printStackTrace();
         }
 
+    }
+
+    public JSONArray getAllSymbolsJsonArr() {
+        return allSymbolsJsonArr;
+    }
+
+    public void setAllSymbolsJsonArr(JSONArray allSymbolsJsonArr) {
+        this.allSymbolsJsonArr = allSymbolsJsonArr;
     }
 }
