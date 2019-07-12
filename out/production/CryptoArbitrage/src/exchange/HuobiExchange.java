@@ -21,18 +21,8 @@ public class HuobiExchange extends Exchange{
 
     @Override
     public void synchPrices() {
-        ShrimpyHandler shrimpyHandler = new ShrimpyHandler();
-
-        while(true) {
-            allPairs = shrimpyHandler.getAllPairsFromExchange(ExchangeType.HUOBI);
-            if(allPairs.size() > 20) {
-                break;
-            }
-            exchangeSleep(800);
-        }
-
+        allPairs = getAllCryptoPairsFromJsonArr();
         Core.updateFinishedExchange(this.allPairs, getExchangeType());
-        unfiromPairStrings();
         setFinishedSync(true);
     }
 

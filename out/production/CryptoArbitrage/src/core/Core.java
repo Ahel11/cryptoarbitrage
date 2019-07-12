@@ -1,19 +1,24 @@
 package core;
 
 import exchange.*;
+import impl.CoinApiHandler;
 import impl.CoreHandler;
 import model.ArbitrageOppurtunity;
 import model.CryptoPair;
 import model.PriceUtils;
 import model.ShrimpyHandler;
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 
 public class Core {
 
     private static ArrayList<Exchange> allExchanges;
+    private JSONArray allSymbolsJsonArr;
 
     public Core() {
+
+        initializeAllSymbolsJsonArr();
         initializeBasePrices();
         initializeExchanges();
         startAllExchnages();
@@ -90,6 +95,11 @@ public class Core {
         return true;
     }
 
+    private void initializeAllSymbolsJsonArr() {
+        CoinApiHandler handler = new CoinApiHandler();
+        this.allSymbolsJsonArr = handler.getAllSymbolsWithAllInformation();
+    }
+
     private void initializeBasePrices() {
         PriceUtils.ETHValue = ShrimpyHandler.getETHRate();
         PriceUtils.BTCValue = ShrimpyHandler.getBTCRate();
@@ -100,38 +110,49 @@ public class Core {
         Exchange currExchange;
 
         currExchange = new BinanceExchange(ExchangeType.BINANCE);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
         currExchange = new BittrexExchange(ExchangeType.BITTREX);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
          currExchange = new OKExchange(ExchangeType.OKEX);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
-        currExchange = new HitBtcExchange(ExchangeType.HITBTC);
-        allExchanges.add(currExchange);
+        //currExchange = new HitBtcExchange(ExchangeType.HITBTC);
+        //currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
+        //allExchanges.add(currExchange);
 
         currExchange = new HuobiExchange(ExchangeType.HUOBI);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
         currExchange = new BiboxExchange(ExchangeType.BIBOX);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
         currExchange = new PoloniexExchange(ExchangeType.POLONIEX);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
         currExchange = new KucoinExchange(ExchangeType.KUCOIN);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
         currExchange = new BitmartExchange(ExchangeType.BITMART);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
         //
 
         currExchange = new CoinExchange(ExchangeType.COINEXCHANGE);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
         currExchange = new Crex24Exchange(ExchangeType.CREX24);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
         return allExchanges;

@@ -17,6 +17,7 @@ public class Core {
     private JSONArray allSymbolsJsonArr;
 
     public Core() {
+
         initializeAllSymbolsJsonArr();
         initializeBasePrices();
         initializeExchanges();
@@ -120,9 +121,9 @@ public class Core {
         currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
-        currExchange = new HitBtcExchange(ExchangeType.HITBTC);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
+        //currExchange = new HitBtcExchange(ExchangeType.HITBTC);
+        //currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
+        //allExchanges.add(currExchange);
 
         currExchange = new HuobiExchange(ExchangeType.HUOBI);
         currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);

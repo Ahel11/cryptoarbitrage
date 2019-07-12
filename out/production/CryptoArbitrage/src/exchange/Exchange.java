@@ -1,13 +1,17 @@
 package exchange;
 
+import impl.CoinApiParser;
 import impl.ExchangeImpl;
 import model.CryptoPair;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Exchange extends Thread implements ExchangeImpl {
 
+    private JSONArray allSymbolsJsonArr;
     private String exchangeType = "";
     private ArrayList<CryptoPair> exchangePairs;
     private boolean finishedSync = false;
@@ -57,5 +61,33 @@ public class Exchange extends Thread implements ExchangeImpl {
             e.printStackTrace();
         }
 
+    }
+
+    public ArrayList<CryptoPair> getAllCryptoPairsFromJsonArr() {
+        ArrayList<CryptoPair> allPairs = new ArrayList<>();
+        CoinApiParser parser = new CoinApiParser();
+        try {
+            for(int i=0; i<this.allSymbolsJsonArr.length(); i++) {
+                JSONObject currObj = (JSONObject)this.allSymbolsJsonArr.get(i);
+                if(parser.getExchangeFromJsonObj(currObj).equals(exchangeType)) {
+                    CryptoPair currPair = parser.parseCoinApiObjToPair(currObj);
+                    if(currPair != null) {
+                        allPairs.add(currPair);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return allPairs;
+    }
+
+    public JSONArray getAllSymbolsJsonArr() {
+        return allSymbolsJsonArr;
+    }
+
+    public void setAllSymbolsJsonArr(JSONArray allSymbolsJsonArr) {
+        this.allSymbolsJsonArr = allSymbolsJsonArr;
     }
 }

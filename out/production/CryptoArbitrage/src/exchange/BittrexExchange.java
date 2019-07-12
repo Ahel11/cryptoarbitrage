@@ -27,18 +27,9 @@ public class BittrexExchange extends Exchange{
 
     @Override
     public void synchPrices() {
-        ShrimpyHandler shrimpyHandler = new ShrimpyHandler();
 
-        while(true) {
-            allPairs = shrimpyHandler.getAllPairsFromExchange(ExchangeType.BITTREX);
-            if(allPairs.size() > 60) {
-                break;
-            }
-            exchangeSleep(800);
-        }
-
+        allPairs = getAllCryptoPairsFromJsonArr();
         Core.updateFinishedExchange(this.allPairs, getExchangeType());
-        unfiromPairStrings();
         setFinishedSync(true);
     }
 

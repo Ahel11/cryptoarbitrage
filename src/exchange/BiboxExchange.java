@@ -22,18 +22,8 @@ public class BiboxExchange  extends Exchange{
 
     @Override
     public void synchPrices() {
-        ShrimpyHandler shrimpyHandler = new ShrimpyHandler();
-
-        while(true) {
-            allPairs = shrimpyHandler.getAllPairsFromExchange(ExchangeType.BIBOX);
-            if(allPairs.size() > 150) {
-                break;
-            }
-            exchangeSleep(800);
-        }
-
+        allPairs = getAllCryptoPairsFromJsonArr();
         Core.updateFinishedExchange(this.allPairs, getExchangeType());
-        unfiromPairStrings();
         setFinishedSync(true);
     }
 

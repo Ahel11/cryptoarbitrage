@@ -24,10 +24,8 @@ public class CoinExchange extends  Exchange{
 
     @Override
     public void synchPrices() {
-        CoinExchangeHandler handler = new CoinExchangeHandler();
-        allPairs = handler.getAllCrytoPairs();
 
-        unfiromPairStrings();
+        allPairs = getAllCryptoPairsFromJsonArr();
         Core.updateFinishedExchange(allPairs, getExchangeType());
         setFinishedSync(true);
     }

@@ -25,18 +25,8 @@ public class OKExchange extends Exchange{
 
     @Override
     public void synchPrices() {
-        ShrimpyHandler shrimpyHandler = new ShrimpyHandler();
-
-        while(true) {
-            allPairs = shrimpyHandler.getAllPairsFromExchange(ExchangeType.OKEX);
-            if(allPairs.size() > 300) {
-                break;
-            }
-            exchangeSleep(800);
-        }
-
+        allPairs = getAllCryptoPairsFromJsonArr();
         Core.updateFinishedExchange(this.allPairs, getExchangeType());
-        unfiromPairStrings();
         setFinishedSync(true);
     }
 

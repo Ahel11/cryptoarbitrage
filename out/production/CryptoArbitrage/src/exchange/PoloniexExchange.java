@@ -22,18 +22,8 @@ public class PoloniexExchange extends Exchange{
 
     @Override
     public void synchPrices() {
-        ShrimpyHandler shrimpyHandler = new ShrimpyHandler();
-
-        while(true) {
-            allPairs = shrimpyHandler.getAllPairsFromExchange(ExchangeType.POLONIEX);
-            if(allPairs.size() > 90) {
-                break;
-            }
-            exchangeSleep(800);
-        }
-
+        allPairs = getAllCryptoPairsFromJsonArr();
         Core.updateFinishedExchange(this.allPairs, getExchangeType());
-        unfiromPairStrings();
         setFinishedSync(true);
     }
 

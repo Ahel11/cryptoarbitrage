@@ -22,18 +22,8 @@ public class KucoinExchange extends Exchange{
 
     @Override
     public void synchPrices() {
-        ShrimpyHandler shrimpyHandler = new ShrimpyHandler();
-
-        while(true) {
-            allPairs = shrimpyHandler.getAllPairsFromExchange(ExchangeType.KUCOIN);
-            if(allPairs.size() > 150) {
-                break;
-            }
-            exchangeSleep(800);
-        }
-
+        allPairs = getAllCryptoPairsFromJsonArr();
         Core.updateFinishedExchange(this.allPairs, getExchangeType());
-        unfiromPairStrings();
         setFinishedSync(true);
     }
 

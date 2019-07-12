@@ -13,6 +13,11 @@ public class CoinApiParser {
 
     }
 
+    public String getExchangeFromJsonObj(JSONObject obj) throws Exception {
+        String symbolId = obj.getString("symbol_id");
+        return symbolId.split("_")[0];
+    }
+
     public CryptoPair parseCoinApiObjToPair(JSONObject jsonApiObj) {
         CryptoPair pairToReturn = new CryptoPair();
         try {
