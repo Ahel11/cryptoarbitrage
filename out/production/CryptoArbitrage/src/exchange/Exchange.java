@@ -2,13 +2,12 @@ package exchange;
 
 import core.Core;
 import impl.CoinApiParser;
-import impl.ExchangeImpl;
+import interfaceimpl.ExchangeImpl;
 import model.CryptoPair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Exchange extends Thread implements ExchangeImpl {
     private ArrayList<CryptoPair> allPairs = new ArrayList<>();

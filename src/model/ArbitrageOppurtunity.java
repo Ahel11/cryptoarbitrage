@@ -17,7 +17,7 @@ public class ArbitrageOppurtunity implements Comparable{
     private String space = "         ";
     DecimalFormat format =  new DecimalFormat("#.#########");
     DecimalFormat formatPerc =  new DecimalFormat("#.##");
-    DecimalFormat formatProfit =  new DecimalFormat("#.####");
+    DecimalFormat formatProfit =  new DecimalFormat("#.##");
 
     public ArbitrageOppurtunity() {
         this.fromExchange ="";
