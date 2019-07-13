@@ -69,7 +69,7 @@ public class ProfitHandler {
         double costOfSelling = 0;
         double bidPrice = bidPair.getPrice();
         double nrOfTokensInVolumeToUse = 0;
-        if(pair.contains("BTCAID")) {
+        if(pair.contains("BTCGNT")) {
             System.out.print("HERE");
         }
 
@@ -82,11 +82,10 @@ public class ProfitHandler {
 
         //Calculates the mxaNr of tokens to sell
         double nrOfTokensToSell = calculateMaximumeNrOfTokensToSell(bidPrice, askOrders);
-        if(nrOfTokensToSell == -1) {
-            return-1;
-        }
 
-        if(nrOfTokensToSell < bidPair.getVolume()) {
+        if(nrOfTokensToSell == -1) {
+            nrOfTokensInVolumeToUse = bidPair.getVolume();
+        } else if(nrOfTokensToSell < bidPair.getVolume() ) {
             nrOfTokensInVolumeToUse = nrOfTokensToSell;
         } else {
             nrOfTokensInVolumeToUse = bidPair.getVolume();

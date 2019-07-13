@@ -17,6 +17,7 @@ public class ArbitrageOppurtunity implements Comparable{
     private String space = "         ";
     DecimalFormat format =  new DecimalFormat("#.#########");
     DecimalFormat formatPerc =  new DecimalFormat("#.##");
+    DecimalFormat formatProfit =  new DecimalFormat("#.####");
 
     public ArbitrageOppurtunity() {
         this.fromExchange ="";
@@ -111,7 +112,7 @@ public class ArbitrageOppurtunity implements Comparable{
                 "\t\t\tbuyPrice:\t\t" + format.format(buyPrice)+
                 "\t\t\tsellPrice:\t\t" + format.format(sellPrice )+
                 "\t\tP%:\t\t" + formatPerc.format(profitPerc) + "%" +
-                "\t\tpP$:\t\t" + formatPerc.format(profitDollar) +
+                "\t\tpP$:\t\t" + formatProfit.format(profitDollar) +
                 //"\t\tminVolume:\t\t" + formatPerc.format(minVolume) +
                 "\t\tPair:\t\t" + this.pairType ;
         // + "\n\nAsks:\n" + askListBuf.toString() + "\n\nBids:\n" + bidListBuf.toString() + "\n\n";

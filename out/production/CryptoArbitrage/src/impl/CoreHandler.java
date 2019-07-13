@@ -248,6 +248,8 @@ public class CoreHandler {
         excludedCoins.add("GTO");
         excludedCoins.add("IOST");
         excludedCoins.add("TRX");
+        excludedCoins.add("EUR");
+        excludedCoins.add("JPY");
 
         return excludedCoins;
     }

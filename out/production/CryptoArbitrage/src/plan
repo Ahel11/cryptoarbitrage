@@ -10,7 +10,7 @@
 
 *) Test current singleProfit handler  works                                 *************
 
-*) Implement more dynamic version for Exchange handling
+*) Implement more dynamic version for Exchange handling                     *************
 
 *) Check why -1 is returned for some and fix
 

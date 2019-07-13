@@ -10,10 +10,13 @@
 
 *) Test current singleProfit handler  works                                 *************
 
-*) Implement more dynamic version for Exchange handling
+*) Implement more dynamic version for Exchange handling                     *************
 
-*) Check why -1 is returned for some and fix
+*) Check why -1 is returned for some and fix                                *************
 
+*) Create profitResultContainer when calculating profit
+
+*) Check for a way to optimize buy/sell volume to optimize profit
 
 *) Add all exchanges possible by API
 
