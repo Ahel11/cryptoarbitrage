@@ -38,9 +38,7 @@ public class Core {
     public void printAll() {
         checkIfFinished();
         for(Exchange e: allExchanges) {
-            if(e.getExchangeType().contains("YOBIT")) {
-                e.printAllPairs();
-            }
+            e.printAllPairs();
         }
     }
 
@@ -83,7 +81,7 @@ public class Core {
     }
 
     public void initializeExchanges() {
-        allExchanges = getAllExchanges();
+        allExchanges = getAllExchangesFromName();
     }
 
 
@@ -117,15 +115,66 @@ public class Core {
         PriceUtils.DOGEValue = ShrimpyHandler.getDOGERate();
     }
 
+    private ArrayList<Exchange> getAllExchangesFromName() {
+        ArrayList<Exchange> exchangesList = new ArrayList<>();
+
+        ArrayList<String> allExNames = getAllExchangeNames();
+        for(String currExName: allExNames) {
+            Exchange currEx = new Exchange(currExName);
+            currEx.setAllSymbolsJsonArr(allSymbolsJsonArr);
+            exchangesList.add(currEx);
+        }
+
+        return exchangesList;
+    }
+
+    private ArrayList<String> getAllExchangeNames() {
+        ArrayList<String> allowedExchanges = new ArrayList<>();
+
+        allowedExchanges.add("BINANCE");
+        allowedExchanges.add("BITTREX");
+        allowedExchanges.add("BITFINEX");
+        allowedExchanges.add("KRAKEN");
+        allowedExchanges.add("OKEX");
+        allowedExchanges.add("HUOBIPRO");
+        allowedExchanges.add("BIBOX");
+        allowedExchanges.add("KUCOIN");
+        allowedExchanges.add("BITMART");
+        allowedExchanges.add("CREX24");
+        allowedExchanges.add("LIVECOIN");
+        allowedExchanges.add("COINEXCHANGE");
+        allowedExchanges.add("YOBIT");
+        allowedExchanges.add("COINBENE");
+        allowedExchanges.add("FATBTC");
+       // allowedExchanges.add("COINEGG");
+
+
+        allowedExchanges.add("IDAX");
+        allowedExchanges.add("BITFOREX");
+        allowedExchanges.add("DIGIFINEX");
+        allowedExchanges.add("IDCM");
+        allowedExchanges.add("COINTIGER");
+        allowedExchanges.add("BITKER");
+        allowedExchanges.add("RIGHTBTC");
+        allowedExchanges.add("ZB");
+        allowedExchanges.add("Bilaxy");
+        allowedExchanges.add("DRAGONEX");
+        allowedExchanges.add("SIMEX");
+        allowedExchanges.add("TOKOK");
+        allowedExchanges.add("kryptono");
+
+        return allowedExchanges;
+    }
+
     private ArrayList<Exchange> getAllExchanges() {
         ArrayList<Exchange> allExchanges = new ArrayList<Exchange>();
         Exchange currExchange;
 
-        currExchange = new BinanceExchange(ExchangeType.BINANCE);
+        currExchange = new Exchange(ExchangeType.BINANCE);
         currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
-        currExchange = new BittrexExchange(ExchangeType.BITTREX);
+        /*currExchange = new BittrexExchange(ExchangeType.BITTREX);
         currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
@@ -187,6 +236,10 @@ public class Core {
         currExchange = new LiquidExchange(ExchangeType.LIQUID);
         currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
+
+        currExchange = new FatBtcExchange(ExchangeType.FATBTC);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
+        allExchanges.add(currExchange);*/
 
         return allExchanges;
     }

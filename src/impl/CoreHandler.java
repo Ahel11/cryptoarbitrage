@@ -132,7 +132,7 @@ public class CoreHandler {
         //LEFT -> BUYING
         //
 
-        double profit = profitHandler.calculateProfit(askPair.getCryptoPair(), askPair.getBestAsk(), (ArrayList)bidPair.getBidOrders());
+        double profit = profitHandler.calculateProfit(askPair.getCryptoPair(), bidPair.getBestBid(), (ArrayList)askPair.getAskOrders());
 
         //oppurtunity.setMinVolume(minVolume);
         oppurtunity.setProfitDollar(profit);

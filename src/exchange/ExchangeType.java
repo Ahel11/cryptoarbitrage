@@ -22,7 +22,7 @@ public class ExchangeType {
     public static final String COINBENE = "COINBENE";
     public static final String FATBTC = "FATBTC";
     public static final String BITKER = "BITKER";
-    public static final String LIQUID = "LIQUID";
+    public static final String LIQUID = "QUOINE";
 
 
 }

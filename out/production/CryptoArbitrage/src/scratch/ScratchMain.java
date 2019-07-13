@@ -1,5 +1,6 @@
 package scratch;
 
+import exchange.Exchange;
 import impl.HttpHandler;
 import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;
@@ -16,8 +17,16 @@ public class ScratchMain {
 
     public static void main(String args[]) {
         //checkBestProfit();
-        orderBookTest();
+        //orderBookTest();
+
+
     }
+
+    public static void test() {
+
+
+    }
+
 
     public static void orderBookTest() {
         try {

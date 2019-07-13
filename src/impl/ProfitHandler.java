@@ -63,13 +63,13 @@ public class ProfitHandler {
 
     }
 
-    public double calculateProfit(String pair, Order bestAskOrder, ArrayList<Order> bidList) {
+    public double calculateProfit(String pair, Order bidPair, ArrayList<Order> askOrders) {
         double profit = 0;
         double costOfBuying = 0;
         double costOfSelling = 0;
-        double askPrice = bestAskOrder.getPrice();
+        double bidPrice = bidPair.getPrice();
         double nrOfTokensInVolumeToUse = 0;
-        if(pair.contains("BTCFXC")) {
+        if(pair.contains("BTCAID")) {
             System.out.print("HERE");
         }
 
@@ -81,19 +81,19 @@ public class ProfitHandler {
 
 
         //Calculates the mxaNr of tokens to sell
-        double nrOfTokensToSell = calculateMaximumeNrOfTokensToSell(askPrice, bidList);
+        double nrOfTokensToSell = calculateMaximumeNrOfTokensToSell(bidPrice, askOrders);
         if(nrOfTokensToSell == -1) {
             return-1;
         }
 
-        if(nrOfTokensToSell < bestAskOrder.getVolume()) {
+        if(nrOfTokensToSell < bidPair.getVolume()) {
             nrOfTokensInVolumeToUse = nrOfTokensToSell;
         } else {
-            nrOfTokensInVolumeToUse = bestAskOrder.getVolume();
+            nrOfTokensInVolumeToUse = bidPair.getVolume();
         }
         //Cost of buying
-        costOfBuying = bestAskOrder.getPrice() * nrOfTokensInVolumeToUse;
-        costOfSelling = calculateCostOfSelling(askPrice, nrOfTokensInVolumeToUse, bidList);
+        costOfSelling = bidPair.getPrice() * nrOfTokensInVolumeToUse;
+        costOfBuying = calculateCostOfBuying(bidPrice, nrOfTokensInVolumeToUse, askOrders);
 
         profit = costOfSelling - costOfBuying;
 
@@ -112,21 +112,21 @@ public class ProfitHandler {
         return profit;
     }
 
-    public double calculateCostOfSelling(double askPrice, double nrOfTokens, ArrayList<Order> bidList) {
-        double costOfSelling = 0;
+    public double calculateCostOfBuying(double askPrice, double nrOfTokens, ArrayList<Order> askOrders) {
+        double costOfBuying = 0;
 
-        for(int i=0; i<bidList.size(); i++) {
-            Order currOrder = bidList.get(i);
+        for(int i=0; i<askOrders.size(); i++) {
+            Order currOrder = askOrders.get(i);
             if(nrOfTokens > currOrder.getVolume()) {
-                costOfSelling = costOfSelling + (currOrder.getPrice() * currOrder.getVolume());
+                costOfBuying = costOfBuying + (currOrder.getPrice() * currOrder.getVolume());
                 nrOfTokens = nrOfTokens - currOrder.getVolume();
             } else  {
-                costOfSelling = costOfSelling + currOrder.getPrice() * nrOfTokens;
-                return costOfSelling;
+                costOfBuying = costOfBuying + currOrder.getPrice() * nrOfTokens;
+                return costOfBuying;
             }
         }
 
-        return costOfSelling;
+        return costOfBuying;
     }
 
     private double calculateMaximumeNrOfTokensToSell(double askPrice, ArrayList<Order> bidList) {
@@ -135,7 +135,7 @@ public class ProfitHandler {
 
         for(int i=0; i<bidList.size(); i++) {
             Order currBidOrder = bidList.get(i);
-            if(currBidOrder.getPrice() > askPrice) {
+            if(currBidOrder.getPrice() < askPrice) {
                 maximumeNrOfTokensToSell = maximumeNrOfTokensToSell +  currBidOrder.getVolume();
             } else {
                 return maximumeNrOfTokensToSell;

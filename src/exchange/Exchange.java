@@ -1,5 +1,6 @@
 package exchange;
 
+import core.Core;
 import impl.CoinApiParser;
 import impl.ExchangeImpl;
 import model.CryptoPair;
@@ -10,23 +11,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Exchange extends Thread implements ExchangeImpl {
+    private ArrayList<CryptoPair> allPairs = new ArrayList<>();
 
     private JSONArray allSymbolsJsonArr;
     private String exchangeType = "";
     private ArrayList<CryptoPair> exchangePairs;
     private boolean finishedSync = false;
 
-    public Exchange() {
+    public Exchange(String type) {
+        setExchangeType(type);
         this.exchangePairs = new ArrayList<CryptoPair>();
     }
 
-
-    public void synchPrices() {
+    public Exchange() {
 
     }
 
-    public void printAllPairs() {
+    public void run() {
+        synchPrices();
+    }
 
+    public void synchPrices() {
+        allPairs = getAllCryptoPairsFromJsonArr();
+        Core.updateFinishedExchange(this.allPairs, getExchangeType());
+        setFinishedSync(true);
+    }
+
+    public void printAllPairs() {
+        for(CryptoPair currPair: allPairs) {
+            System.out.print(currPair.toString() + "\n");
+        }
+        System.out.print("\nSIZE OF " + this.getExchangeType() + "\t" + allPairs.size() + "\n\n");
     }
 
 
