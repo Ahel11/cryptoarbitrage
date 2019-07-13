@@ -110,7 +110,7 @@ public class ArbitrageOppurtunity implements Comparable{
                 "\t\tTO:\t\t" + toExchange  +
                 "\t\t\tbuyPrice:\t\t" + format.format(buyPrice)+
                 "\t\t\tsellPrice:\t\t" + format.format(sellPrice )+
-                "\t\tprofitPerc:\t\t" + formatPerc.format(profitPerc) + "%" +
+                "\t\tP%:\t\t" + formatPerc.format(profitPerc) + "%" +
                 "\t\tpP$:\t\t" + formatPerc.format(profitDollar) +
                 //"\t\tminVolume:\t\t" + formatPerc.format(minVolume) +
                 "\t\tPair:\t\t" + this.pairType ;

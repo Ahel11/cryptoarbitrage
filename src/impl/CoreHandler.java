@@ -211,10 +211,45 @@ public class CoreHandler {
     }
 
     private boolean passesFilter(ArbitrageOppurtunity currOpp) {
+        ArrayList<String> excludedCoins = excludedCoins();
+        for(String s: excludedCoins) {
+            if(currOpp.getPairType().contains(s)) {
+                return false;
+            }
+        }
+
+        if(currOpp.getPairType().contains("USD") && !currOpp.getPairType().contains("USDT")) {
+            return false;
+        }
+
+        if(currOpp.getPairType().contains("USDT") && currOpp.getPairType().contains("BTC")) {
+            return false;
+        }
+
+        if(currOpp.getPairType().contains("RUB")) {
+            return false;
+        }
+
         if(currOpp.getProfitPerc() >= minPerc && currOpp.getProfitPerc() <= maxPerc) {
             return true;
         }
         return false;
+    }
+
+    private ArrayList<String> excludedCoins() {
+        ArrayList<String> excludedCoins = new ArrayList<>();
+
+        //Add coins to be excluded
+        excludedCoins.add("BCH");
+        excludedCoins.add("XRP");
+        excludedCoins.add("MITH");
+        excludedCoins.add("KEY");
+        excludedCoins.add("RUS");
+        excludedCoins.add("GTO");
+        excludedCoins.add("IOST");
+        excludedCoins.add("TRX");
+
+        return excludedCoins;
     }
 
 }

@@ -16,5 +16,13 @@ public class ExchangeType {
     public static final String COINEXCHANGE = "COINEXCHANGE";
     public static final String YOBIT = "YOBIT";
 
+    public static final String LATOKEN = "LATOKEN";
+    public static final String COINEAL = "COINEAL";
+    public static final String HOTBIT = "HOTBIT";
+    public static final String COINBENE = "COINBENE";
+    public static final String FATBTC = "FATBTC";
+    public static final String BITKER = "BITKER";
+    public static final String LIQUID = "LIQUID";
+
 
 }

@@ -69,7 +69,7 @@ public class ProfitHandler {
         double costOfSelling = 0;
         double askPrice = bestAskOrder.getPrice();
         double nrOfTokensInVolumeToUse = 0;
-        if(pair.contains("BTCMDT")) {
+        if(pair.contains("BTCFXC")) {
             System.out.print("HERE");
         }
 

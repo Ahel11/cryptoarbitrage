@@ -38,7 +38,9 @@ public class Core {
     public void printAll() {
         checkIfFinished();
         for(Exchange e: allExchanges) {
-            e.printAllPairs();;
+            if(e.getExchangeType().contains("YOBIT")) {
+                e.printAllPairs();
+            }
         }
     }
 
@@ -168,7 +170,21 @@ public class Core {
         currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 
-        currExchange = new Crex24Exchange(ExchangeType.YOBIT);
+        currExchange = new YobitExchange(ExchangeType.YOBIT);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
+        allExchanges.add(currExchange);
+
+
+
+        currExchange = new CoinBene(ExchangeType.COINBENE);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
+        allExchanges.add(currExchange);
+
+        currExchange = new BitkerExchange(ExchangeType.BITKER);
+        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
+        allExchanges.add(currExchange);
+
+        currExchange = new LiquidExchange(ExchangeType.LIQUID);
         currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 

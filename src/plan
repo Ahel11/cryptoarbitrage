@@ -8,14 +8,12 @@
 
 *) Add profitHandler to calculate profit for each arbitrage Opp             *************
 
-*) Additional exchanges to implement:
-    -) FATBTC
-    -) COINBENE
-    -) COINEGG
-    -) HOTBIT
-    -) COINEAL
-    -) LATOKEN
-    -) BITKER
-    -) LIQUID
+*) Test current singleProfit handler  works                                 *************
+
+*) Check why -1 is returned for some and fix
+
+*) Implement more dynamic version for Exchange handling
+
+*) Add all exchanges possible by API
 
 *) Calculate how much ETH to send for each arbitrage (separate variable)

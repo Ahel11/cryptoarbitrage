@@ -36,6 +36,7 @@ public class HttpHandler {
 
         try {
             HttpGet get = new HttpGet(url);
+            get.setHeader("User-Agent", "\tMozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:10.0) Gecko/20100101 Firefox/10.0");
             get.setHeader(header);
             HttpResponse resp = client.execute(get);
             String respString = EntityUtils.toString(resp.getEntity());
