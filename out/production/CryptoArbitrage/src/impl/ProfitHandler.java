@@ -1,17 +1,15 @@
 package impl;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import model.Order;
 import model.PriceUtils;
+import model.ProfitResult;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ProfitHandler {
 
     public static void main(String args[]) {
-        Order bestAskOrder = new Order();
+        /*Order bestAskOrder = new Order();
         ArrayList<Order> bidList = new ArrayList<>();
 
         bestAskOrder.setPrice(0.00000059);
@@ -55,7 +53,7 @@ public class ProfitHandler {
         ProfitHandler profHandler = new ProfitHandler();
         double profit = profHandler.calculateProfit("BTC", bestAskOrder, bidList);
         System.out.print(profit);
-
+*/
     }
 
 
@@ -63,8 +61,10 @@ public class ProfitHandler {
 
     }
 
-    public double calculateProfit(String pair, Order bidPair, ArrayList<Order> askOrders) {
-        double profit = 0;
+    public ProfitResult calculateProfit(String pair, Order bidPair, ArrayList<Order> askOrders) {
+        ProfitResult profitResult = new ProfitResult();
+        double profitCrypto = 0;
+        double profitUsd = 0;
         double costOfBuying = 0;
         double costOfSelling = 0;
         double bidPrice = bidPair.getPrice();
@@ -94,9 +94,15 @@ public class ProfitHandler {
         costOfSelling = bidPair.getPrice() * nrOfTokensInVolumeToUse;
         costOfBuying = calculateCostOfBuying(bidPrice, nrOfTokensInVolumeToUse, askOrders);
 
-        profit = costOfSelling - costOfBuying;
+        profitCrypto = costOfSelling - costOfBuying;
+        profitUsd = calculateUsdValue(pair, profitCrypto);
 
-        return calculateUsdValue(pair, profit);
+        profitResult.setVolumeUsed(nrOfTokensInVolumeToUse);
+        profitResult.setAmountToSendCrypto(costOfBuying);
+        profitResult.setAmountToSendUSD(calculateUsdValue(pair, costOfBuying));
+        profitResult.setProfitUsd(profitUsd);
+
+        return profitResult;
     }
 
 

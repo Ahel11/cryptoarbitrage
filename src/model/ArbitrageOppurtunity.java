@@ -9,11 +9,11 @@ public class ArbitrageOppurtunity implements Comparable{
     private String pairType;
     private CryptoPair bidPair;
     private CryptoPair askPair;
+    private ProfitResult res;
     private double buyPrice;
     private double sellPrice;
     private double profitPerc;
     private double profitDollar;
-    private double minVolume;
     private String space = "         ";
     DecimalFormat format =  new DecimalFormat("#.#########");
     DecimalFormat formatPerc =  new DecimalFormat("#.##");
@@ -26,8 +26,15 @@ public class ArbitrageOppurtunity implements Comparable{
         this.buyPrice = 0;
         this.sellPrice = 0;
         this.profitPerc = 0;
-        this.minVolume = 0;
         this.profitDollar = 0;
+    }
+
+    public ProfitResult getRes() {
+        return res;
+    }
+
+    public void setRes(ProfitResult res) {
+        this.res = res;
     }
 
     public String getFromExchange() {
@@ -70,14 +77,6 @@ public class ArbitrageOppurtunity implements Comparable{
         this.profitPerc = profitPerc;
     }
 
-    public double getMinVolume() {
-        return minVolume;
-    }
-
-    public void setMinVolume(double minVolume) {
-        this.minVolume = minVolume;
-    }
-
     public String getPairType() {
         return pairType;
     }
@@ -114,7 +113,8 @@ public class ArbitrageOppurtunity implements Comparable{
                 "\t\tP%:\t\t" + formatPerc.format(profitPerc) + "%" +
                 "\t\tpP$:\t\t" + formatProfit.format(profitDollar) +
                 //"\t\tminVolume:\t\t" + formatPerc.format(minVolume) +
-                "\t\tPair:\t\t" + this.pairType ;
+                "\t\tPair:\t\t" + this.pairType + "\t\tAct:\t\t" +
+                res.toString();
         // + "\n\nAsks:\n" + askListBuf.toString() + "\n\nBids:\n" + bidListBuf.toString() + "\n\n";
     }
 

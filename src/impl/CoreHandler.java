@@ -2,10 +2,7 @@ package impl;
 
 import exchange.Exchange;
 import exchange.ExchangeType;
-import model.ArbitrageOppurtunity;
-import model.CryptoPair;
-import model.PriceUtils;
-import model.ProfitCalculationHolder;
+import model.*;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -132,10 +129,11 @@ public class CoreHandler {
         //LEFT -> BUYING
         //
 
-        double profit = profitHandler.calculateProfit(askPair.getCryptoPair(), bidPair.getBestBid(), (ArrayList)askPair.getAskOrders());
+        ProfitResult profitResult = profitHandler.calculateProfit(askPair.getCryptoPair(), bidPair.getBestBid(), (ArrayList)askPair.getAskOrders());
 
         //oppurtunity.setMinVolume(minVolume);
-        oppurtunity.setProfitDollar(profit);
+        oppurtunity.setRes(profitResult);
+        oppurtunity.setProfitDollar(profitResult.getProfitUsd());
         oppurtunity.setProfitPerc(perc);
         oppurtunity.setBuyPrice(askPair.getBestAsk().getPrice());
         oppurtunity.setSellPrice(bidPair.getBestBid().getPrice());
@@ -250,6 +248,11 @@ public class CoreHandler {
         excludedCoins.add("TRX");
         excludedCoins.add("EUR");
         excludedCoins.add("JPY");
+        excludedCoins.add("BCD");
+        excludedCoins.add("ICX");
+        excludedCoins.add("ETC");
+        excludedCoins.add("EOS");
+        excludedCoins.add("AE");
 
         return excludedCoins;
     }

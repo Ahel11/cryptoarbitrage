@@ -1,19 +1,22 @@
 *) Fix uniform USD volume                                                   *************
 
-*) Add total profit in $ in the ArbitrageOppurtunity listing                *************
+*) Add total profitUsd in $ in the ArbitrageOppurtunity listing                *************
 
 *) Debug CREX24 and make sure its running good                              *************
 
 *) Retrieve prices from Livecoin and YoBit                                  *************
 
-*) Add profitHandler to calculate profit for each arbitrage Opp             *************
+*) Add profitHandler to calculate profitUsd for each arbitrage Opp             *************
 
 *) Test current singleProfit handler  works                                 *************
 
 *) Implement more dynamic version for Exchange handling                     *************
 
-*) Check why -1 is returned for some and fix
+*) Check why -1 is returned for some and fix                                *************
 
+*) Create profitResultContainer when calculating profitUsd
+
+*) Check for a way to optimize buy/sell volume to optimize profitUsd
 
 *) Add all exchanges possible by API
 
