@@ -83,7 +83,7 @@ public class Exchange extends Thread implements ExchangeImpl {
         try {
             for(int i=0; i<this.allSymbolsJsonArr.length(); i++) {
                 JSONObject currObj = (JSONObject)this.allSymbolsJsonArr.get(i);
-                if(parser.getExchangeFromJsonObj(currObj).equals(exchangeType)) {
+                if(parser.getExchangeFromJsonObj(currObj).equalsIgnoreCase(exchangeType)) {
                     CryptoPair currPair = parser.parseCoinApiObjToPair(currObj);
                     if(currPair != null) {
                         allPairs.add(currPair);

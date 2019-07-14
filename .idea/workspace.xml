@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85478bae-16e5-4680-8fd4-9b60d923ca17" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/Core.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Core.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exchangewallet/WalletHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exchangewallet/WalletHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/impl/CoreHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/impl/CoreHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceimpl/WalletHandlerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceimpl/WalletHandlerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exchange/Exchange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exchange/Exchange.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/plan" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -24,38 +21,58 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/Core.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="67" column="85" lean-forward="true" selection-start-line="67" selection-start-column="85" selection-end-line="67" selection-end-column="85" />
+            <state relative-caret-position="267">
+              <caret line="162" column="38" lean-forward="true" selection-start-line="162" selection-start-column="38" selection-end-line="162" selection-end-column="38" />
               <folding>
+                <element signature="method#printAll#0;class#Core#0" />
+                <element signature="e#951#993#1" />
                 <element signature="method#checkIfFinished#0;class#Core#0" />
+                <element signature="e#1057#1254#1" />
+                <element signature="e#1104#1225#1" />
+                <element signature="method#getArbitrage#0;class#Core#0" />
+                <element signature="e#1342#1539#1" />
+                <element signature="e#1389#1510#1" />
+                <element signature="e#1814#1878#1" />
                 <element signature="method#startAllExchnages#0;class#Core#0" />
+                <element signature="e#1963#1997#1" />
                 <element signature="method#updateFinishedExchange#0;class#Core#0" />
+                <element signature="e#2276#2417#1" />
+                <element signature="e#2338#2407#1" />
                 <element signature="method#isAllExchangeSyncFinished#0;class#Core#0" />
+                <element signature="e#2523#2700#1" />
+                <element signature="e#2572#2690#1" />
+                <element signature="method#initializeAllSymbolsJsonArr#0;class#Core#0" />
+                <element signature="method#initializeBasePrices#0;class#Core#0" />
+                <element signature="method#getAllExchangesFromName#0;class#Core#0" />
+                <element signature="e#3373#3539#1" />
                 <element signature="method#getAllExchanges#0;class#Core#0" />
+                <element signature="e#5244#7943#0" />
                 <element signature="method#sleep#0;class#Core#0" />
+                <element signature="e#8026#8067#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/ShrimpyHandler.java">
+        <entry file="file://$PROJECT_DIR$/src/exchange/Exchange.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="60" column="35" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="28" />
+            <state relative-caret-position="561">
+              <caret line="95" column="9" lean-forward="true" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#getOrderFromJSONRepresentation#0;class#ShrimpyHandler#0" />
+                <element signature="e#693#694#0" expanded="true" />
+                <element signature="e#722#723#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/plan">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="20" column="68" selection-start-line="20" selection-start-column="68" selection-end-line="20" selection-end-column="68" />
+            <state relative-caret-position="180">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
         </entry>
@@ -72,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/impl/CoreHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="239" selection-start-line="239" selection-end-line="239" />
+            <state relative-caret-position="384">
+              <caret line="135" column="46" lean-forward="true" selection-start-line="135" selection-start-column="46" selection-end-line="135" selection-end-column="46" />
               <folding>
                 <element signature="method#CoreHandler#0;class#CoreHandler#0" />
                 <element signature="e#736#1396#1" />
@@ -106,6 +123,7 @@
                 <element signature="e#8506#8603#1" />
                 <element signature="e#8638#8735#1" />
                 <element signature="e#8771#8846#1" />
+                <element signature="method#passesFilter#0;class#CoreHandler#0" />
                 <element signature="e#9047#9154#1" />
                 <element signature="e#9099#9144#1" />
                 <element signature="e#9249#9286#1" />
@@ -191,7 +209,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>minvo</find>
       <find>minProfitDollar</find>
       <find>fxc</find>
       <find>passesFilter</find>
@@ -221,6 +238,7 @@
       <find>krake</find>
       <find>BTCOST</find>
       <find>BTCEMC</find>
+      <find>tiger</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -264,7 +282,6 @@
         <option value="$PROJECT_DIR$/src/impl/ProfitCalculationHandler.java" />
         <option value="$PROJECT_DIR$/src/scratch/ScratchMain.java" />
         <option value="$PROJECT_DIR$/src/exchange/ExchangeType.java" />
-        <option value="$PROJECT_DIR$/src/exchange/Exchange.java" />
         <option value="$PROJECT_DIR$/src/impl/ProfitHandler.java" />
         <option value="$PROJECT_DIR$/src/model/ProfitResult.java" />
         <option value="$PROJECT_DIR$/src/model/ArbitrageOppurtunity.java" />
@@ -275,11 +292,12 @@
         <option value="$PROJECT_DIR$/src/exchangewallet/BittrexExchangeWalletChecker.java" />
         <option value="$PROJECT_DIR$/src/exchangewallet/LivecoinExchangeWalletChecker.java" />
         <option value="$PROJECT_DIR$/src/exchangewallet/CoinExchangeWalletChecker.java" />
-        <option value="$PROJECT_DIR$/src/plan" />
-        <option value="$PROJECT_DIR$/src/core/Core.java" />
         <option value="$PROJECT_DIR$/src/interfaceimpl/WalletHandlerImpl.java" />
         <option value="$PROJECT_DIR$/src/exchangewallet/WalletHandler.java" />
         <option value="$PROJECT_DIR$/src/impl/CoreHandler.java" />
+        <option value="$PROJECT_DIR$/src/exchange/Exchange.java" />
+        <option value="$PROJECT_DIR$/src/core/Core.java" />
+        <option value="$PROJECT_DIR$/src/plan" />
       </list>
     </option>
   </component>
@@ -471,8 +489,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="1" width="1936" height="1056" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17430703" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17430703" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -481,8 +500,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.44420367" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.42795232" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.35969663" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.36836404" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -1008,24 +1027,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/exchange/Exchange.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#714#715#0" expanded="true" />
-            <element signature="e#743#744#0" expanded="true" />
-            <element signature="e#665#666#0" expanded="true" />
-            <element signature="e#701#702#0" expanded="true" />
-            <element signature="e#2149#2150#0" expanded="true" />
-            <element signature="e#2189#2190#0" expanded="true" />
-            <element signature="e#2258#2259#0" expanded="true" />
-            <element signature="e#2316#2317#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/ProfitResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-160">
@@ -1122,13 +1123,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plan">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="20" column="68" selection-start-line="20" selection-start-column="68" selection-end-line="20" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/impl/CoinApiParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
@@ -1166,21 +1160,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/Core.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="67" column="85" lean-forward="true" selection-start-line="67" selection-start-column="85" selection-end-line="67" selection-end-column="85" />
-          <folding>
-            <element signature="method#checkIfFinished#0;class#Core#0" />
-            <element signature="method#startAllExchnages#0;class#Core#0" />
-            <element signature="method#updateFinishedExchange#0;class#Core#0" />
-            <element signature="method#isAllExchangeSyncFinished#0;class#Core#0" />
-            <element signature="method#getAllExchanges#0;class#Core#0" />
-            <element signature="method#sleep#0;class#Core#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/impl/ProfitHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
@@ -1191,10 +1170,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/exchange/Exchange.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="95" column="9" lean-forward="true" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#693#694#0" expanded="true" />
+            <element signature="e#722#723#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/Core.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="162" column="38" lean-forward="true" selection-start-line="162" selection-start-column="38" selection-end-line="162" selection-end-column="38" />
+          <folding>
+            <element signature="method#printAll#0;class#Core#0" />
+            <element signature="e#951#993#1" />
+            <element signature="method#checkIfFinished#0;class#Core#0" />
+            <element signature="e#1057#1254#1" />
+            <element signature="e#1104#1225#1" />
+            <element signature="method#getArbitrage#0;class#Core#0" />
+            <element signature="e#1342#1539#1" />
+            <element signature="e#1389#1510#1" />
+            <element signature="e#1814#1878#1" />
+            <element signature="method#startAllExchnages#0;class#Core#0" />
+            <element signature="e#1963#1997#1" />
+            <element signature="method#updateFinishedExchange#0;class#Core#0" />
+            <element signature="e#2276#2417#1" />
+            <element signature="e#2338#2407#1" />
+            <element signature="method#isAllExchangeSyncFinished#0;class#Core#0" />
+            <element signature="e#2523#2700#1" />
+            <element signature="e#2572#2690#1" />
+            <element signature="method#initializeAllSymbolsJsonArr#0;class#Core#0" />
+            <element signature="method#initializeBasePrices#0;class#Core#0" />
+            <element signature="method#getAllExchangesFromName#0;class#Core#0" />
+            <element signature="e#3373#3539#1" />
+            <element signature="method#getAllExchanges#0;class#Core#0" />
+            <element signature="e#5244#7943#0" />
+            <element signature="method#sleep#0;class#Core#0" />
+            <element signature="e#8026#8067#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/impl/CoreHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="239" selection-start-line="239" selection-end-line="239" />
+        <state relative-caret-position="384">
+          <caret line="135" column="46" lean-forward="true" selection-start-line="135" selection-start-column="46" selection-end-line="135" selection-end-column="46" />
           <folding>
             <element signature="method#CoreHandler#0;class#CoreHandler#0" />
             <element signature="e#736#1396#1" />
@@ -1224,6 +1249,7 @@
             <element signature="e#8506#8603#1" />
             <element signature="e#8638#8735#1" />
             <element signature="e#8771#8846#1" />
+            <element signature="method#passesFilter#0;class#CoreHandler#0" />
             <element signature="e#9047#9154#1" />
             <element signature="e#9099#9144#1" />
             <element signature="e#9249#9286#1" />
@@ -1232,6 +1258,13 @@
             <element signature="method#pairContainsUsdType#0;class#CoreHandler#0" />
             <element signature="method#excludedCoins#0;class#CoreHandler#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plan">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>

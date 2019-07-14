@@ -32,6 +32,7 @@ public class Core {
 
         System.out.print("Beginning arbitrages...\n");
         getArbitrage();
+        printEmptyExchanges();
         //printAll();
     }
 
@@ -163,6 +164,13 @@ public class Core {
         allowedExchanges.add("TOKOK");
         allowedExchanges.add("kryptono");
 
+        allowedExchanges.add("MERCATOX");
+        allowedExchanges.add("STEX");
+        allowedExchanges.add("QUOINE");
+        allowedExchanges.add("COSS");
+        allowedExchanges.add("TIDEX");
+        allowedExchanges.add("IDEX");
+
         return allowedExchanges;
     }
 
@@ -242,6 +250,15 @@ public class Core {
         allExchanges.add(currExchange);*/
 
         return allExchanges;
+    }
+
+    private void printEmptyExchanges() {
+        System.out.print("\n\nALL EMPTY EXCHANGES:\n\n");
+        for(Exchange e: allExchanges) {
+            if(e.getAllCryptoPairsFromJsonArr().size() == 0) {
+                System.out.print(e.getExchangeType() + "\n");
+            }
+        }
     }
 
     public void sleep(long ms) {

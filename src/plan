@@ -1,30 +1,35 @@
-*) Fix uniform USD volume                                                   *************
+*) Fix uniform USD volume                                                       *************
 
-*) Add total profitUsd in $ in the ArbitrageOppurtunity listing                *************
+*) Add total profitUsd in $ in the ArbitrageOppurtunity listing                 *************
 
-*) Debug CREX24 and make sure its running good                              *************
+*) Debug CREX24 and make sure its running good                                  *************
 
-*) Retrieve prices from Livecoin and YoBit                                  *************
+*) Retrieve prices from Livecoin and YoBit                                      *************
 
-*) Add profitHandler to calculate profitUsd for each arbitrage Opp             *************
+*) Add profitHandler to calculate profitUsd for each arbitrage Opp              *************
 
-*) Test current singleProfit handler  works                                 *************
+*) Test current singleProfit handler  works                                     *************
 
-*) Implement more dynamic version for Exchange handling                     *************
+*) Implement more dynamic version for Exchange handling                         *************
 
-*) Check why -1 is returned for some and fix                                *************
+*) Check why -1 is returned for some and fix                                    *************
 
-*) Create profitResultContainer when calculating profitUsd                  *************
+*) Create profitResultContainer when calculating profitUsd                      *************
 
-*) Calculate how much ETH to send for each arbitrage (separate variable)    *************
+*) Calculate how much ETH to send for each arbitrage (separate variable)        *************
+
+*) Create a function that checks which exchanges did not get symbols            *************
 
 *) Check for a way to optimize buy/sell volume to optimize profitUsd
 
-*) Create a function that checks which exchanges did not get symbols
-
 *) Add all exchanges possible by API
 
+
+
+
 *) Check wallet status for all coins for each exchange                      [IN PROGRESS]
+
+*) Add additional exchanges to the total list of exchanges                  [IN PROGRESS]
 
 
 
