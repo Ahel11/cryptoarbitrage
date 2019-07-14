@@ -211,7 +211,7 @@ public class Core {
         allExchanges.add(currExchange);
         //
 
-        currExchange = new CoinExchange(ExchangeType.COINEXCHANGE);
+        currExchange = new CoinExchangeWalletChecker(ExchangeType.COINEXCHANGE);
         currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
         allExchanges.add(currExchange);
 

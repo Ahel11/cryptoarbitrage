@@ -7,6 +7,9 @@ import interfaceimpl.WalletHandlerImpl;
 public class WalletHandler implements WalletHandlerImpl {
 
     private BinanceExchangeWalletChecker binanceExchangeWalletChecker;
+    private BittrexExchangeWalletChecker bittrexExchangeWalletChecker;
+    private LivecoinExchangeWalletChecker livcoinExchangeWalletChecker;
+    private CoinExchangeWalletChecker coinExchangeWalletChecker;
 
     public WalletHandler() {
         initializeAllWalletStatuses();
@@ -14,6 +17,7 @@ public class WalletHandler implements WalletHandlerImpl {
 
     private void initializeAllWalletStatuses() {
         binanceExchangeWalletChecker = new BinanceExchangeWalletChecker();
+        bittrexExchangeWalletChecker = new BittrexExchangeWalletChecker();
     }
 
     @Override
@@ -25,13 +29,13 @@ public class WalletHandler implements WalletHandlerImpl {
                     return binanceExchangeWalletChecker.isWalletStatusOffline(pairType);
 
                 case ExchangeType.BITTREX:
-                    break;
+                    return bittrexExchangeWalletChecker.isWalletStatusOffline(pairType);
 
                 case ExchangeType.LIVECOIN:
-                    break;
+                    return livcoinExchangeWalletChecker.isWalletStatusOffline(pairType);
 
                 case ExchangeType.COINEXCHANGE:
-                    break;
+                    return coinExchangeWalletChecker.isWalletStatusOffline(pairType);
             }
         } catch (Exception e) {
 
