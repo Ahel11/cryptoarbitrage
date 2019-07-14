@@ -18,11 +18,12 @@ public class WalletHandler implements WalletHandlerImpl {
     private void initializeAllWalletStatuses() {
         binanceExchangeWalletChecker = new BinanceExchangeWalletChecker();
         bittrexExchangeWalletChecker = new BittrexExchangeWalletChecker();
+        livcoinExchangeWalletChecker = new LivecoinExchangeWalletChecker();
+        coinExchangeWalletChecker = new CoinExchangeWalletChecker();
     }
 
     @Override
-    public boolean checkWalletStatus(String exchangeType, String pairType) {
-
+    public boolean isWalletStatusOffline(String exchangeType, String pairType) {
         try {
             switch (exchangeType) {
                 case ExchangeType.BINANCE:
@@ -40,8 +41,6 @@ public class WalletHandler implements WalletHandlerImpl {
         } catch (Exception e) {
 
         }
-
-
         return false;
     }
 }

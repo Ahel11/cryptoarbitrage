@@ -143,7 +143,7 @@ public class Core {
         allowedExchanges.add("CREX24");
         allowedExchanges.add("LIVECOIN");
         allowedExchanges.add("COINEXCHANGE");
-        allowedExchanges.add("YOBIT");
+        //allowedExchanges .add("YOBIT");
         allowedExchanges.add("COINBENE");
         allowedExchanges.add("FATBTC");
        // allowedExchanges.add("COINEGG");

@@ -2,6 +2,7 @@ package impl;
 
 import exchange.Exchange;
 import exchange.ExchangeType;
+import exchangewallet.WalletHandler;
 import model.*;
 
 import java.text.DecimalFormat;
@@ -10,6 +11,7 @@ import java.util.Collections;
 
 public class CoreHandler {
 
+    private WalletHandler walletHandler = new WalletHandler();
     private double maxArbitrageCash = 3000;
     private double minPerc = 1.3;
     private double maxPerc = 60;
@@ -220,7 +222,7 @@ public class CoreHandler {
             return false;
         }
 
-        if(currOpp.getPairType().contains("USDT") && currOpp.getPairType().contains("BTC")) {
+        if(pairContainsUsdType(currOpp.getPairType()) && (currOpp.getPairType().contains("BTC") || currOpp.getPairType().contains("ETH") || currOpp.getPairType().contains("LTC"))) {
             return false;
         }
 
@@ -231,7 +233,29 @@ public class CoreHandler {
         if(currOpp.getProfitPerc() >= minPerc && currOpp.getProfitPerc() <= maxPerc) {
             return true;
         }
+
+        boolean isWalletOfflineFromEx = walletHandler.isWalletStatusOffline(currOpp.getFromExchange(), getOtherCurr(currOpp.getPairType()));
+        boolean isWalletOfflineToEx = walletHandler.isWalletStatusOffline(currOpp.getToExchange(), getOtherCurr(currOpp.getPairType()));
+
+        if(isWalletOfflineFromEx || isWalletOfflineToEx) {
+            return false;
+        }
+
         return false;
+    }
+
+    private String getOtherCurr(String pairType) {
+        String toReturn = "";
+
+        toReturn = toReturn.replace("BTC", "");
+        toReturn = toReturn.replace("ETH", "");
+        toReturn = toReturn.replace("LTC", "");
+
+        return toReturn;
+    }
+
+    private boolean pairContainsUsdType(String pair) {
+        return pair.contains("USDT") || pair.contains("USD") || pair.contains("PAX") ||pair.contains("DAI");
     }
 
     private ArrayList<String> excludedCoins() {
@@ -244,6 +268,7 @@ public class CoreHandler {
         excludedCoins.add("KEY");
         excludedCoins.add("RUS");
         excludedCoins.add("GTO");
+        excludedCoins.add("ZIL");
         excludedCoins.add("IOST");
         excludedCoins.add("TRX");
         excludedCoins.add("EUR");

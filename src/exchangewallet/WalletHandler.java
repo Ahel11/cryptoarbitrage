@@ -23,8 +23,7 @@ public class WalletHandler implements WalletHandlerImpl {
     }
 
     @Override
-    public boolean checkWalletStatus(String exchangeType, String pairType) {
-
+    public boolean isWalletStatusOffline(String exchangeType, String pairType) {
         try {
             switch (exchangeType) {
                 case ExchangeType.BINANCE:
@@ -42,8 +41,6 @@ public class WalletHandler implements WalletHandlerImpl {
         } catch (Exception e) {
 
         }
-
-
         return false;
     }
 }
