@@ -13,7 +13,7 @@ public class CoinApiHandler {
     private static String ordersUrl = "https://rest.coinapi.io/v1/orderbooks/current";
 
     private ArrayList<String> keys = new ArrayList<>();
-    private int keyIndex =0 ;
+    private int keyIndex =1 ;
     private HttpHandler httpHtttpHandler;
 
 
@@ -27,7 +27,11 @@ public class CoinApiHandler {
         //USED IPS:
         // -) 95.174.65.141
 
+        //Home/work laptop key
         keys.add("83E0606F-CA8F-4151-819D-F5D0F2BF67AA");
+
+        //Work laptop key
+        keys.add("56ECDA02-0F10-4691-9061-523AF749C366");
     }
 
 

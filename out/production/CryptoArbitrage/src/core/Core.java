@@ -163,6 +163,7 @@ public class Core {
         allowedExchanges.add("SIMEX");
         allowedExchanges.add("TOKOK");
         allowedExchanges.add("kryptono");
+
         allowedExchanges.add("MERCATOX");
         allowedExchanges.add("STEX");
         allowedExchanges.add("QUOINE");
