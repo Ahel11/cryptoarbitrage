@@ -158,7 +158,7 @@ public class ArbitrageOppurtunity implements Comparable{
 
     @Override
     public int compareTo(Object o) {
-        return compareProfit(o);
+        return comparePerc(o);
     }
 }
 

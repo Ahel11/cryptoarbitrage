@@ -2,6 +2,7 @@ package exchangewallet;
 
 import exchange.BittrexExchange;
 import model.WalletStatusHolder;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -11,6 +12,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class BitmartExchangeWalletChecker {
 
@@ -23,19 +25,61 @@ public class BitmartExchangeWalletChecker {
     public void parseSource(WebDriver driver) {
 
         WebElement tables = driver.findElement(By.tagName("table"));
-        List<WebElement> tBodies = tables.findElements(By.tagName("tbody"));
+        String hmtl = tables.getAttribute("innerHTML");
+        generateWalletStatusForEachCurrency(hmtl);
 
-        for (WebElement row : tBodies) {
-            List<WebElement> cols = row.findElements(By.tagName("td"));
-            for (WebElement col : cols) {
-                if(col.getText().contains("Deposit")) {
-                    System.out.print("here");
-                }
-                System.out.print(col.getText() + "\n");
+
+    }
+
+    private boolean generateWalletStatusForEachCurrency(String html) {
+        Scanner scanner = new Scanner(html);
+        ArrayList<String> htmlComponents = new ArrayList<>();
+        while(scanner.hasNext()) {
+            String next = scanner.next();
+            if(isLegitimateToken(next)) {
+                htmlComponents.add(next);
             }
-            System.out.println();
         }
 
+        for(int i=0; i<htmlComponents.size(); i++) {
+            String currString = htmlComponents.get(i);
+            if(currString.contains("coin-name-t1")) {
+                if(isDepositOrWithdrawalDisabled(htmlComponents, i)) {
+                    System.out.print(currString + "\t" + false + "\n\n");
+                } else {
+                    System.out.print(currString + "\t" + true + "\n\n");
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isLegitimateToken(String token) {
+        if(token.contains("coin-name-t1") || token.contains("deposit-span")) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isDepositOrWithdrawalDisabled(ArrayList<String> list, int index) {
+        String deposit = list.get(index+1);
+        String withdraw = list.get(index+2);
+        if(deposit.contains("deposit-span-no") || withdraw.contains("deposit-span-no")) {
+            return true;
+        }
+        return false;
+    }
+
+    private String getCoinNameFromCurrWalletStatus(ArrayList<String> stringList, int index) {
+        for(int i=index; i>0; i--) {
+            String currString = stringList.get(i);
+            if(currString.contains("coin-name-t1")) {
+                currString = Jsoup.parse(currString).text().split(">")[1];
+                return currString;
+            }
+        }
+        return null;
     }
 
 }

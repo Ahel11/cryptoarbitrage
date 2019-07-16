@@ -13,7 +13,7 @@ public class CoinApiHandler {
     private static String ordersUrl = "https://rest.coinapi.io/v1/orderbooks/current";
 
     private ArrayList<String> keys = new ArrayList<>();
-    private int keyIndex =1 ;
+    private int keyIndex =0 ;
     private HttpHandler httpHtttpHandler;
 
 
