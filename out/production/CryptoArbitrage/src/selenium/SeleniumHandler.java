@@ -1,7 +1,6 @@
 package selenium;
 
 import exchangewallet.BitmartExchangeWalletChecker;
-import exchangewallet.CrexExchangeWalletChecker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -42,10 +41,6 @@ public class SeleniumHandler {
         bitmartExchangeWalletChecker = new BitmartExchangeWalletChecker();
         bitmartExchangeWalletChecker.parseSource(driver);
         return bitmartExchangeWalletChecker;
-    }
-
-    public CrexExchangeWalletChecker initializeCrexWalletChecker() {
-        
     }
 
     public static void main(String args[]) {

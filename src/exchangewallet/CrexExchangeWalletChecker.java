@@ -4,7 +4,7 @@ import model.WalletStatusHolder;
 
 import java.util.ArrayList;
 
-public class CrexExchangeWalletHandler {
+public class CrexExchangeWalletChecker {
 
     public static void parseSource(String source) {
         ArrayList<WalletStatusHolder> walletStatusHolders = new ArrayList<>();

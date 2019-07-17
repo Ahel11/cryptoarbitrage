@@ -1,6 +1,7 @@
 package core;
 
 import exchange.*;
+import exchangewallet.WalletHandler;
 import impl.CoinApiHandler;
 import impl.CoreHandler;
 import model.ArbitrageOppurtunity;
@@ -13,10 +14,14 @@ import java.util.ArrayList;
 
 public class Core {
 
+    private CoreHandler coreHandler;
     private static ArrayList<Exchange> allExchanges;
     private JSONArray allSymbolsJsonArr;
 
     public Core() {
+
+        System.out.print("Initializing wallet handler..");
+        initializeWalletHandler();
 
         System.out.print("Initializing arr...\n");
         initializeAllSymbolsJsonArr();
@@ -65,7 +70,7 @@ public class Core {
             break;
         }
 
-        CoreHandler coreHandler = new CoreHandler();
+        coreHandler = new CoreHandler();
         ArrayList<ArbitrageOppurtunity> arbitrageOppurtunities = coreHandler.calculateArbitrageOppurtunities(allExchanges);
 
         //Printing oppurtunities
@@ -83,6 +88,12 @@ public class Core {
 
     public void initializeExchanges() {
         allExchanges = getAllExchangesFromName();
+    }
+
+    public void initializeWalletHandler() {
+        WalletHandler walletHandler = new WalletHandler();
+        walletHandler.initializeAllWalletStatuses();
+        this.coreHandler.setWalletHandler(walletHandler);
     }
 
 

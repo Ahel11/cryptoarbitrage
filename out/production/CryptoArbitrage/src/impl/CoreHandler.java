@@ -24,6 +24,10 @@ public class CoreHandler {
 
     }
 
+
+    //
+
+
     public ArrayList<ArbitrageOppurtunity> calculateArbitrageOppurtunities(ArrayList<Exchange> allExchanges) {
         ArrayList<ArbitrageOppurtunity> oppurtunities = new ArrayList<>();
 
@@ -282,6 +286,13 @@ public class CoreHandler {
         return excludedCoins;
     }
 
+    public WalletHandler getWalletHandler() {
+        return walletHandler;
+    }
+
+    public void setWalletHandler(WalletHandler walletHandler) {
+        this.walletHandler = walletHandler;
+    }
 }
 
 

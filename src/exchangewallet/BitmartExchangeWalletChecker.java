@@ -1,6 +1,7 @@
 package exchangewallet;
 
 import exchange.BittrexExchange;
+import interfaceimpl.ExchangeWalletCheckerImpl;
 import model.WalletStatusHolder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class BitmartExchangeWalletChecker {
+public class BitmartExchangeWalletChecker implements ExchangeWalletCheckerImpl {
 
     private ArrayList<WalletStatusHolder> walletStatusList;
 
@@ -42,13 +43,22 @@ public class BitmartExchangeWalletChecker {
         }
 
         for(int i=0; i<htmlComponents.size(); i++) {
+
             String currString = htmlComponents.get(i);
             if(currString.contains("coin-name-t1")) {
-                if(isDepositOrWithdrawalDisabled(htmlComponents, i)) {
-                    System.out.print(currString + "\t" + false + "\n\n");
-                } else {
-                    System.out.print(currString + "\t" + true + "\n\n");
+                boolean walletStatusBool = false;
+                String coinName = "";
+                coinName = Jsoup.parse(currString).text();
+                coinName = coinName.split(">")[1];
+
+                if(!isDepositOrWithdrawalDisabled(htmlComponents, i)) {
+                    walletStatusBool = true;
                 }
+                WalletStatusHolder currHolder = new WalletStatusHolder();
+                currHolder.setPair(coinName);
+                currHolder.setWalletDepositEnabled(walletStatusBool);
+                currHolder.setWalletWithdrawalEnabled(walletStatusBool);
+                walletStatusList.add(currHolder);
             }
         }
 
@@ -82,6 +92,23 @@ public class BitmartExchangeWalletChecker {
         return null;
     }
 
+
+    @Override
+    public void initialize() {
+
+    }
+
+    @Override
+    public boolean isWalletStatusOffline(String pairType) throws Exception {
+        for(WalletStatusHolder hold: walletStatusList) {
+            if(hold.getPair().equalsIgnoreCase(pairType)) {
+                if(!hold.isWalletDepositEnabled() || !hold.isWalletWithdrawalEnabled()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
 
 
