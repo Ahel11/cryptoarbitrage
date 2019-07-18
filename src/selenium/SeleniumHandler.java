@@ -45,12 +45,15 @@ public class SeleniumHandler {
     }
 
     public CrexExchangeWalletChecker initializeCrexWalletChecker() {
-        
+        driver.navigate().to("https://crex24.com/sv/");
+        CrexExchangeWalletChecker crexExchangeWalletChecker = new CrexExchangeWalletChecker();
+
+        return crexExchangeWalletChecker;
     }
 
     public static void main(String args[]) {
         SeleniumHandler handler = new SeleniumHandler();
-        handler.initializeWalletStatusForAllExchanges();
+        handler.initializeCrexWalletChecker();
     }
 
     private void runEscapeCharThread() {

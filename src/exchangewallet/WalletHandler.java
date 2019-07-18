@@ -14,6 +14,7 @@ public class WalletHandler implements WalletHandlerImpl {
     private CoinExchangeWalletChecker coinExchangeWalletChecker;
     private BitmartExchangeWalletChecker bitmartExchangeWalletChecker;
     private HuobiExchangeWalletChecker huobiExchangeWalletChecker;
+    private KucoinExchangeWalletChecker kucoinExchangeWalletChecker;
     private SeleniumHandler seleniumHandler;
 
     public WalletHandler() {
@@ -28,6 +29,7 @@ public class WalletHandler implements WalletHandlerImpl {
         livcoinExchangeWalletChecker = new LivecoinExchangeWalletChecker();
         coinExchangeWalletChecker = new CoinExchangeWalletChecker();
         huobiExchangeWalletChecker = new HuobiExchangeWalletChecker();
+        kucoinExchangeWalletChecker = new KucoinExchangeWalletChecker();
         seleniumHandler.closeBrowser();
     }
 
@@ -54,6 +56,9 @@ public class WalletHandler implements WalletHandlerImpl {
 
                 case ExchangeType.HUOBI:
                     return huobiExchangeWalletChecker.isWalletStatusOffline(pairType);
+
+                case ExchangeType.KUCOIN:
+                    return kucoinExchangeWalletChecker.isWalletStatusOffline(pairType);
             }
         } catch (Exception e) {
             e.printStackTrace();

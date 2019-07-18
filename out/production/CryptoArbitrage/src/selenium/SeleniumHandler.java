@@ -1,6 +1,7 @@
 package selenium;
 
 import exchangewallet.BitmartExchangeWalletChecker;
+import exchangewallet.CrexExchangeWalletChecker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -43,9 +44,16 @@ public class SeleniumHandler {
         return bitmartExchangeWalletChecker;
     }
 
+    public CrexExchangeWalletChecker initializeCrexWalletChecker() {
+        driver.navigate().to("https://crex24.com/sv/");
+        CrexExchangeWalletChecker crexExchangeWalletChecker = new CrexExchangeWalletChecker();
+
+        return crexExchangeWalletChecker;
+    }
+
     public static void main(String args[]) {
         SeleniumHandler handler = new SeleniumHandler();
-        handler.initializeWalletStatusForAllExchanges();
+        handler.initializeCrexWalletChecker();
     }
 
     private void runEscapeCharThread() {
