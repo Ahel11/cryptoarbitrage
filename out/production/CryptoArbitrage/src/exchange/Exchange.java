@@ -4,6 +4,7 @@ import core.Core;
 import impl.CoinApiParser;
 import interfaceimpl.ExchangeImpl;
 import model.CryptoPair;
+import model.ShrimpyHandler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -31,7 +32,7 @@ public class Exchange extends Thread implements ExchangeImpl {
     }
 
     public void synchPrices() {
-        allPairs = getAllCryptoPairsFromJsonArr();
+        allPairs = getAllCryptoPairsFromShrimpy();
         Core.updateFinishedExchange(this.allPairs, getExchangeType());
         setFinishedSync(true);
     }
@@ -77,7 +78,7 @@ public class Exchange extends Thread implements ExchangeImpl {
 
     }
 
-    public ArrayList<CryptoPair> getAllCryptoPairsFromJsonArr() {
+    public ArrayList<CryptoPair> getAllCryptoPairsFromJsonArrCoinApi() {
         ArrayList<CryptoPair> allPairs = new ArrayList<>();
         CoinApiParser parser = new CoinApiParser();
         try {
@@ -94,6 +95,12 @@ public class Exchange extends Thread implements ExchangeImpl {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return allPairs;
+    }
+
+    public ArrayList<CryptoPair> getAllCryptoPairsFromShrimpy() {
+        ShrimpyHandler handler = new ShrimpyHandler();
+        ArrayList<CryptoPair> allPairs = handler.getAllPairsFromExchange(this.getExchangeType());
         return allPairs;
     }
 

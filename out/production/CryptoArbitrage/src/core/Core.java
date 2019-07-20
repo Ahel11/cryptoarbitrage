@@ -19,9 +19,28 @@ public class Core {
     private JSONArray allSymbolsJsonArr;
 
     public Core() {
+        //initializeExchangesCoinApi();
+        startExchangesShrimpy();
+    }
 
+    public void startExchangesShrimpy() {
+        System.out.print("Initializing basePrices...\n");
+        initializeBasePrices();
+
+        System.out.print("Initializing exchanges...\n");
+        initializeExchangesShrimpy();
+
+        System.out.print("Starting all exchanges...\n");
+        startAllExchnages();
+
+        System.out.print("Get arbitrage...\n");
+        //printAll();
+        getArbitrage();
+    }
+
+    public void initializeExchangesCoinApi() {
         System.out.print("Initializing wallet handler..");
-        initializeWalletHandler();
+        //initializeWalletHandler();
 
         System.out.print("Initializing arr...\n");
         initializeAllSymbolsJsonArr();
@@ -88,6 +107,10 @@ public class Core {
 
     public void initializeExchanges() {
         allExchanges = getAllExchangesFromName();
+    }
+
+    public void initializeExchangesShrimpy() {
+        allExchanges = getAllExchangesShrimpy();
     }
 
     public void initializeWalletHandler() {
@@ -185,91 +208,38 @@ public class Core {
         return allowedExchanges;
     }
 
-    private ArrayList<Exchange> getAllExchanges() {
-        ArrayList<Exchange> allExchanges = new ArrayList<Exchange>();
-        Exchange currExchange;
+    private ArrayList<Exchange> getAllExchangesShrimpy() {
+        ArrayList<Exchange> allExchangesForShrimpy = new ArrayList<>();
 
-        currExchange = new Exchange(ExchangeType.BINANCE);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
+        //AllExchanges for Shrimpy
+        allExchangesForShrimpy.add(generateExchange(ExchangeType.KUCOIN));
+        allExchangesForShrimpy.add(generateExchange(ExchangeType.BIBOX));
+        allExchangesForShrimpy.add(generateExchange(ExchangeType.BINANCE));
+        allExchangesForShrimpy.add(generateExchange(ExchangeType.BITTREX));
+        allExchangesForShrimpy.add(generateExchange(ExchangeType.BITMART));
+        allExchangesForShrimpy.add(generateExchange(ExchangeType.HUOBI));
+        allExchangesForShrimpy.add(generateExchange(ExchangeType.OKEX));
 
-        /*currExchange = new BittrexExchange(ExchangeType.BITTREX);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
-
-         currExchange = new OKExchange(ExchangeType.OKEX);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
-
-        //currExchange = new HitBtcExchange(ExchangeType.HITBTC);
-        //currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        //allExchanges.add(currExchange);
-
-        currExchange = new HuobiExchange(ExchangeType.HUOBI);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
-
-        currExchange = new BiboxExchange(ExchangeType.BIBOX);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
-
-        currExchange = new PoloniexExchange(ExchangeType.POLONIEX);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
-
-        currExchange = new KucoinExchange(ExchangeType.KUCOIN);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
-
-        currExchange = new BitmartExchange(ExchangeType.BITMART);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
-
-        currExchange = new LivecoinExchange(ExchangeType.LIVECOIN);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
-        //
-
-        currExchange = new CoinExchangeWalletChecker(ExchangeType.COINEXCHANGE);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
-
-        currExchange = new Crex24Exchange(ExchangeType.CREX24);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
-
-        currExchange = new YobitExchange(ExchangeType.YOBIT);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
+        //All nonShrimpy exchanges
+        CoinExchange coinExchange = new CoinExchange(ExchangeType.COINEXCHANGE);
+        allExchangesForShrimpy.add(coinExchange);
 
 
+        return allExchangesForShrimpy;
+    }
 
-        currExchange = new CoinBene(ExchangeType.COINBENE);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
-
-        currExchange = new BitkerExchange(ExchangeType.BITKER);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
-
-        currExchange = new LiquidExchange(ExchangeType.LIQUID);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);
-
-        currExchange = new FatBtcExchange(ExchangeType.FATBTC);
-        currExchange.setAllSymbolsJsonArr(allSymbolsJsonArr);
-        allExchanges.add(currExchange);*/
-
-        return allExchanges;
+    private Exchange generateExchange(String exchangeName) {
+        Exchange currExchange = new Exchange(exchangeName);
+        return currExchange;
     }
 
     private void printEmptyExchanges() {
-        System.out.print("\n\nALL EMPTY EXCHANGES:\n\n");
+        /*System.out.print("\n\nALL EMPTY EXCHANGES:\n\n");
         for(Exchange e: allExchanges) {
             if(e.getAllCryptoPairsFromJsonArr().size() == 0) {
                 System.out.print(e.getExchangeType() + "\n");
             }
-        }
+        }*/
     }
 
     public void sleep(long ms) {

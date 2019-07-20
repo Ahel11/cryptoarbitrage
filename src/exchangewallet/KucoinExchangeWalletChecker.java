@@ -1,6 +1,5 @@
 package exchangewallet;
 
-import exchange.KucoinExchange;
 import impl.HttpHandler;
 import interfaceimpl.ExchangeWalletCheckerImpl;
 import org.json.JSONArray;

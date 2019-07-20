@@ -95,16 +95,6 @@ public class ArbitrageOppurtunity implements Comparable{
 
     @Override
     public String toString() {
-        StringBuffer askListBuf = new StringBuffer();
-        StringBuffer bidListBuf = new StringBuffer();
-
-        for(Order askOrder: this.askPair.getAskOrders()) {
-            askListBuf.append(askOrder.toString() + "\n");
-        }
-
-        for(Order askOrder: this.bidPair.getBidOrders()) {
-            bidListBuf.append(askOrder.toString() + "\n");
-        }
 
         return "FROM:\t\t" + fromExchange +
                 "\t\tTO:\t\t" + toExchange  +
@@ -113,8 +103,8 @@ public class ArbitrageOppurtunity implements Comparable{
                 "\t\tP%:\t\t" + formatPerc.format(profitPerc) + "%" +
                 "\t\tpP$:\t\t" + formatProfit.format(profitDollar) +
                 //"\t\tminVolume:\t\t" + formatPerc.format(minVolume) +
-                "\t\tPair:\t\t" + this.pairType + "\t\tAct:\t\t" +
-                res.toString();
+                "\t\tPair:\t\t" + this.pairType;
+                //res.toString();
         // + "\n\nAsks:\n" + askListBuf.toString() + "\n\nBids:\n" + bidListBuf.toString() + "\n\n";
     }
 

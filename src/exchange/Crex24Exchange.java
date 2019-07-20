@@ -8,7 +8,7 @@ import impl.ExchangeHelper;
 
 import java.util.ArrayList;
 
-public class Crex24Exchange extends Exchange{
+public class Crex24Exchange extends Exchange {
 
     private static ArrayList<CryptoPair> allCryptoPairs = new ArrayList<>();
     private static int totalNrOfPairsToFetch = 0;
@@ -45,9 +45,32 @@ public class Crex24Exchange extends Exchange{
 
     @Override
     public void synchPrices() {
+        try {
+            Crex24Handler handler = new Crex24Handler();
+            ArrayList<String> allPairs = handler.generatePairsToFetch();
+            totalNrOfPairsToFetch = allPairs.size();
+            int currThreads = 0;
 
-        allCryptoPairs = getAllCryptoPairsFromJsonArr();
+            for(String pair: allPairs) {
+                Crex24HandlerThread currThread = new Crex24HandlerThread(pair);
+                currThread.start();
+                currThreads += 1;
+                if(currThreads == 50) {
+                    exchangeSleep(200);
+                    currThreads = 0;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        while(!isFinishedLoadingAllPairs()) {
+            exchangeSleep(500);
+        }
+
         Core.updateFinishedExchange(allCryptoPairs, ExchangeType.CREX24);
+        unfiromPairStrings();
         setFinishedSync(true);
 
     }

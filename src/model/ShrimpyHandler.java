@@ -154,6 +154,7 @@ public class ShrimpyHandler {
             }
 
         } catch (Exception e) {
+            System.out.print("EXCHANGE NAME FAILURE:\t" + exchage + "\n\n");
             e.printStackTrace();
         }
 

@@ -1,9 +1,5 @@
 package core;
 
-import exchange.Crex24Exchange;
-import exchange.ExchangeType;
-import exchange.OKExchange;
-
 public class Main {
 
     public static void main(String args[]) {

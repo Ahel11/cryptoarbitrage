@@ -1,14 +1,14 @@
 package exchange;
 
 import core.Core;
+import impl.CoinExchangeHandler;
 import model.CryptoPair;
 import impl.ExchangeHelper;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class CoinExchange extends  Exchange{
-
+public class CoinExchange extends  Exchange {
 
     private static ArrayList<CryptoPair> allPairs = new ArrayList<>();
 
@@ -23,9 +23,11 @@ public class CoinExchange extends  Exchange{
 
     @Override
     public void synchPrices() {
+        CoinExchangeHandler handler = new CoinExchangeHandler();
+        allPairs = handler.getAllCrytoPairs();
 
-        allPairs = getAllCryptoPairsFromJsonArr();
         Core.updateFinishedExchange(allPairs, getExchangeType());
+        unfiromPairStrings();
         setFinishedSync(true);
     }
 
@@ -40,44 +42,7 @@ public class CoinExchange extends  Exchange{
     private void unfiromPairStrings() {
         ExchangeHelper helper = new ExchangeHelper();
         helper.uniformPairs(allPairs);
-        allPairs  = filterBtcOnly();
     }
-
-    private ArrayList<CryptoPair> filterBtcOnly() {
-        HashSet<CryptoPair> btcOnlyPairs = new HashSet<>();
-
-        for(CryptoPair curr: allPairs) {
-            ArrayList<CryptoPair> similarPairs = getAllSimilarPairs(curr);
-            CryptoPair btcFromList = getBtcFromList(similarPairs);
-            btcOnlyPairs.add(btcFromList);
-        }
-        ArrayList<CryptoPair> filteredList = new ArrayList<>(btcOnlyPairs);
-        return filteredList;
-    }
-
-    private CryptoPair getBtcFromList(ArrayList<CryptoPair> allPairs) {
-        CryptoPair highestVal = allPairs.get(0);
-
-        for(CryptoPair currPair: allPairs) {
-            if(currPair.getBestBid().getPrice() < highestVal.getBestBid().getPrice()) {
-                highestVal = currPair;
-            }
-        }
-        return highestVal;
-    }
-
-    private ArrayList<CryptoPair> getAllSimilarPairs(CryptoPair pair) {
-        ArrayList<CryptoPair> similarPairs = new ArrayList<>();
-
-        for(CryptoPair currPair: allPairs) {
-            if(currPair.getCryptoPair().equals(pair.getCryptoPair())) {
-                similarPairs.add(currPair);
-            }
-        }
-
-        return similarPairs;
-    }
-
 }
 
 

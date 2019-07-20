@@ -1,6 +1,5 @@
 package exchangewallet;
 
-import exchange.LivecoinExchange;
 import impl.HttpHandler;
 import interfaceimpl.ExchangeWalletCheckerImpl;
 import org.json.JSONArray;

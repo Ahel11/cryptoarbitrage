@@ -135,11 +135,11 @@ public class CoreHandler {
         //LEFT -> BUYING
         //
 
-        ProfitResult profitResult = profitHandler.calculateProfit(askPair.getCryptoPair(), bidPair.getBestBid(), (ArrayList)askPair.getAskOrders());
+        //ProfitResult profitResult = profitHandler.calculateProfit(askPair.getCryptoPair(), bidPair.getBestBid(), (ArrayList)askPair.getAskOrders());
 
         //oppurtunity.setMinVolume(minVolume);
-        oppurtunity.setRes(profitResult);
-        oppurtunity.setProfitDollar(profitResult.getProfitUsd());
+        //oppurtunity.setRes(profitResult);
+        oppurtunity.setProfitDollar(0);
         oppurtunity.setProfitPerc(perc);
         oppurtunity.setBuyPrice(askPair.getBestAsk().getPrice());
         oppurtunity.setSellPrice(bidPair.getBestBid().getPrice());
@@ -238,12 +238,12 @@ public class CoreHandler {
             return true;
         }
 
-        boolean isWalletOfflineFromEx = walletHandler.isWalletStatusOffline(currOpp.getFromExchange(), getOtherCurr(currOpp.getPairType()));
+        /*boolean isWalletOfflineFromEx = walletHandler.isWalletStatusOffline(currOpp.getFromExchange(), getOtherCurr(currOpp.getPairType()));
         boolean isWalletOfflineToEx = walletHandler.isWalletStatusOffline(currOpp.getToExchange(), getOtherCurr(currOpp.getPairType()));
 
         if(isWalletOfflineFromEx || isWalletOfflineToEx) {
             return false;
-        }
+        }*/
 
         return false;
     }
