@@ -14,6 +14,7 @@ public class WalletHandler implements WalletHandlerImpl {
     private CoinExchangeWalletChecker coinExchangeWalletChecker;
     private BitmartExchangeWalletChecker bitmartExchangeWalletChecker;
     private HuobiExchangeWalletChecker huobiExchangeWalletChecker;
+    private KucoinExchangeWalletChecker kucoinExchangeWalletChecker;
     private SeleniumHandler seleniumHandler;
 
     public WalletHandler() {
@@ -21,23 +22,30 @@ public class WalletHandler implements WalletHandlerImpl {
     }
 
     public void initializeAllWalletStatuses() {
-        SeleniumHandler seleniumHandler = new SeleniumHandler();
-        bitmartExchangeWalletChecker = seleniumHandler.initializeBitmartWalletChecker();
+        //SeleniumHandler seleniumHandler = new SeleniumHandler();
+        //bitmartExchangeWalletChecker = seleniumHandler.initializeBitmartWalletChecker();
         binanceExchangeWalletChecker = new BinanceExchangeWalletChecker();
         bittrexExchangeWalletChecker = new BittrexExchangeWalletChecker();
         livcoinExchangeWalletChecker = new LivecoinExchangeWalletChecker();
         coinExchangeWalletChecker = new CoinExchangeWalletChecker();
         huobiExchangeWalletChecker = new HuobiExchangeWalletChecker();
-        seleniumHandler.closeBrowser();
+        kucoinExchangeWalletChecker = new KucoinExchangeWalletChecker();
+        //seleniumHandler.closeBrowser();
     }
 
 
 
     @Override
     public boolean isWalletStatusOffline(String exchangeType, String pairType) {
+        if(exchangeType.equalsIgnoreCase("kucoin")) {
+            System.out.print("here");
+        }
         try {
             switch (exchangeType) {
                 case ExchangeType.BITMART:
+                    if(bitmartExchangeWalletChecker == null) {
+                        return false;
+                    }
                     return bitmartExchangeWalletChecker.isWalletStatusOffline(pairType);
 
                 case ExchangeType.BINANCE:
@@ -54,6 +62,9 @@ public class WalletHandler implements WalletHandlerImpl {
 
                 case ExchangeType.HUOBI:
                     return huobiExchangeWalletChecker.isWalletStatusOffline(pairType);
+
+                case ExchangeType.KUCOIN:
+                    return kucoinExchangeWalletChecker.isWalletStatusOffline(pairType);
             }
         } catch (Exception e) {
             e.printStackTrace();

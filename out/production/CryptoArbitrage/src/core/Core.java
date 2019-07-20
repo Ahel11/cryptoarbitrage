@@ -24,8 +24,11 @@ public class Core {
     }
 
     public void startExchangesShrimpy() {
-        System.out.print("Initializing basePrices...\n");
-        initializeBasePrices();
+        System.out.print("Initializing components...\n");
+        initiailize();
+
+        System.out.print("Initializing walletHandler...\n");
+        initializeWalletHandler();
 
         System.out.print("Initializing exchanges...\n");
         initializeExchangesShrimpy();
@@ -89,7 +92,6 @@ public class Core {
             break;
         }
 
-        coreHandler = new CoreHandler();
         ArrayList<ArbitrageOppurtunity> arbitrageOppurtunities = coreHandler.calculateArbitrageOppurtunities(allExchanges);
 
         //Printing oppurtunities
@@ -224,8 +226,19 @@ public class Core {
         CoinExchange coinExchange = new CoinExchange(ExchangeType.COINEXCHANGE);
         allExchangesForShrimpy.add(coinExchange);
 
+        Crex24Exchange crex24Exchange = new Crex24Exchange(ExchangeType.CREX24);
+        allExchangesForShrimpy.add(crex24Exchange);
+
 
         return allExchangesForShrimpy;
+    }
+
+
+    //Helper funcs
+
+    private void initiailize() {
+        initializeBasePrices();
+        this.coreHandler = new CoreHandler();
     }
 
     private Exchange generateExchange(String exchangeName) {
@@ -249,6 +262,9 @@ public class Core {
 
         }
     }
+
+
+
 }
 
 

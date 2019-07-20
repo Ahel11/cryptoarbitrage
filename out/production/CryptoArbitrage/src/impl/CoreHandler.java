@@ -11,7 +11,7 @@ import java.util.Collections;
 
 public class CoreHandler {
 
-    private WalletHandler walletHandler = new WalletHandler();
+    private WalletHandler walletHandler;
     private double maxArbitrageCash = 3000;
     private double minPerc = 1.3;
     private double maxPerc = 60;
@@ -53,6 +53,9 @@ public class CoreHandler {
         ArrayList<ArbitrageOppurtunity> filtered = new ArrayList<>();
 
         for(ArbitrageOppurtunity currOpp: oppList) {
+            if(currOpp.getPairType().contains("xlr") || currOpp.getPairType().contains("XLR")){
+                System.out.print("here\n");
+            }
             if(passesFilter(currOpp)) {
                 filtered.add(currOpp);
             }
@@ -234,24 +237,29 @@ public class CoreHandler {
             return false;
         }
 
-        if(currOpp.getProfitPerc() >= minPerc && currOpp.getProfitPerc() <= maxPerc) {
-            return true;
+        if(currOpp.getProfitPerc() <= minPerc || currOpp.getProfitPerc() >= maxPerc) {
+            return false;
         }
-
-        /*boolean isWalletOfflineFromEx = walletHandler.isWalletStatusOffline(currOpp.getFromExchange(), getOtherCurr(currOpp.getPairType()));
-        boolean isWalletOfflineToEx = walletHandler.isWalletStatusOffline(currOpp.getToExchange(), getOtherCurr(currOpp.getPairType()));
+        if(currOpp.getPairType().contains("xlr") || currOpp.getPairType().contains("XLR")) {
+            System.out.print("here\n");
+        }
+        boolean isWalletOfflineFromEx = this.walletHandler.isWalletStatusOffline(currOpp.getFromExchange(), getOtherCurr(currOpp.getPairType()));
+        boolean isWalletOfflineToEx = this.walletHandler.isWalletStatusOffline(currOpp.getToExchange(), getOtherCurr(currOpp.getPairType()));
 
         if(isWalletOfflineFromEx || isWalletOfflineToEx) {
             return false;
-        }*/
+        }
 
-        return false;
+        return true;
     }
 
     private String getOtherCurr(String pairType) {
+        if(pairType.contains("XLR") || pairType.contains("xlr")) {
+            System.out.print("here\n");
+        }
         String toReturn = "";
 
-        toReturn = toReturn.replace("BTC", "");
+        toReturn = pairType.replace("BTC", "");
         toReturn = toReturn.replace("ETH", "");
         toReturn = toReturn.replace("LTC", "");
 
@@ -266,22 +274,9 @@ public class CoreHandler {
         ArrayList<String> excludedCoins = new ArrayList<>();
 
         //Add coins to be excluded
-        excludedCoins.add("BCH");
-        excludedCoins.add("XRP");
-        excludedCoins.add("MITH");
-        excludedCoins.add("KEY");
         excludedCoins.add("RUS");
-        excludedCoins.add("GTO");
-        excludedCoins.add("ZIL");
-        excludedCoins.add("IOST");
-        excludedCoins.add("TRX");
         excludedCoins.add("EUR");
         excludedCoins.add("JPY");
-        excludedCoins.add("BCD");
-        excludedCoins.add("ICX");
-        excludedCoins.add("ETC");
-        excludedCoins.add("EOS");
-        excludedCoins.add("AE");
 
         return excludedCoins;
     }

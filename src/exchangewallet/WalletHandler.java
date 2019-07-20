@@ -22,24 +22,30 @@ public class WalletHandler implements WalletHandlerImpl {
     }
 
     public void initializeAllWalletStatuses() {
-        SeleniumHandler seleniumHandler = new SeleniumHandler();
-        bitmartExchangeWalletChecker = seleniumHandler.initializeBitmartWalletChecker();
+        //SeleniumHandler seleniumHandler = new SeleniumHandler();
+        //bitmartExchangeWalletChecker = seleniumHandler.initializeBitmartWalletChecker();
         binanceExchangeWalletChecker = new BinanceExchangeWalletChecker();
         bittrexExchangeWalletChecker = new BittrexExchangeWalletChecker();
         livcoinExchangeWalletChecker = new LivecoinExchangeWalletChecker();
         coinExchangeWalletChecker = new CoinExchangeWalletChecker();
         huobiExchangeWalletChecker = new HuobiExchangeWalletChecker();
         kucoinExchangeWalletChecker = new KucoinExchangeWalletChecker();
-        seleniumHandler.closeBrowser();
+        //seleniumHandler.closeBrowser();
     }
 
 
 
     @Override
     public boolean isWalletStatusOffline(String exchangeType, String pairType) {
+        if(exchangeType.equalsIgnoreCase("kucoin")) {
+            System.out.print("here");
+        }
         try {
             switch (exchangeType) {
                 case ExchangeType.BITMART:
+                    if(bitmartExchangeWalletChecker == null) {
+                        return false;
+                    }
                     return bitmartExchangeWalletChecker.isWalletStatusOffline(pairType);
 
                 case ExchangeType.BINANCE:
